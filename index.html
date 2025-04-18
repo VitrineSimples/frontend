@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fábrica de Projetos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-white shadow sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-blue-600">Fábrica de Projetos</h1>
+        <ul class="flex space-x-6 text-sm md:text-base">
+          <li>
+            <a href="#disciplina" class="hover:text-blue-600">Disciplina</a>
+          </li>
+          <li><a href="#empresa" class="hover:text-blue-600">Empresa</a></li>
+          <li><a href="#tema" class="hover:text-blue-600">Projeto</a></li>
+          <li><a href="#membros" class="hover:text-blue-600">Grupo</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Seção: Disciplinas -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-700">
+          Disciplinas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            onclick="openModal(0)"
+            class="bg-white shadow-md rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105"
+          >
+            <img
+              src="./assets/imgs/fabric.jfif"
+              class="w-full h-48 object-cover"
+              alt="fabrica-projetos"
+            />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">
+                Fábrica de Projetos
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            onclick="openModal(1)"
+            class="bg-white shadow-md rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105"
+          >
+            <img
+              src="./assets/imgs/frontend.png"
+              class="w-full h-48 object-cover"
+              alt="tec-front"
+            />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">
+                Tecnologias Front-end
+              </h3>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            onclick="openModal(2)"
+            class="bg-white shadow-md rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105"
+          >
+            <img
+              src="./assets/imgs/plat-soft.png"
+              class="w-full h-48 object-cover"
+              alt="plat-soft"
+            />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-gray-800">
+                Plataforma de Desenvolvimento de Software
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modais -->
+    <div id="modals-container">
+      <!-- Modal 1 -->
+      <div
+        id="modal-0"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+      >
+        <div class="bg-white rounded-xl p-6 max-w-lg w-full relative">
+          <button
+            onclick="closeModal(0)"
+            class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl"
+          >
+            &times;
+          </button>
+          <h3 class="text-2xl font-bold mb-2 text-center">
+            Fábrica de Projetos
+          </h3>
+          <p class="text-gray-700 mb-4">
+            A disciplina simula um ambiente real de trabalho, onde aplicamos
+            conhecimentos técnicos e de gestão no desenvolvimento de projetos
+            reais em equipe, com foco em planejamento, entrega contínua e
+            colaboração com empresas parceiras.
+          </p>
+          <h3 class="text-2xl font-bold mb-2 text-center">
+            Docente<br />Crsitovam E. Herculiani
+          </h3>
+          <div class="flex justify-center mt-4">
+            <img
+              src="./assets/imgs/cristovam.jfif"
+              class="w-32 h-32 object-cover rounded-full shadow-md"
+              alt="fabrica-projetos"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal 2 -->
+      <div
+        id="modal-1"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+      >
+        <div class="bg-white rounded-xl p-6 max-w-lg w-full relative">
+          <button
+            onclick="closeModal(1)"
+            class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl"
+          >
+            &times;
+          </button>
+          <h3 class="text-2xl font-bold mb-2 text-center">
+            Tecnologias Front-end
+          </h3>
+          <p class="text-gray-700 mb-4">
+            A disciplina de Tecnologias de Frontend ensina os fundamentos para
+            criar interfaces modernas e responsivas. Nela, aprendemos a utilizar
+            HTML, CSS e JavaScript, além de frameworks como React e Tailwind
+            CSS, para desenvolver aplicações web focadas na experiência do
+            usuário.
+          </p>
+          <h3 class="text-2xl font-bold mb-2 text-center">
+            Docente<br />Valdir Amancio Pereira Junior
+          </h3>
+          <div class="flex justify-center mt-4">
+            <img
+              src="./assets/imgs/valdir.jpg"
+              class="w-32 h-32 object-cover rounded-full shadow-md"
+              alt="fabrica-projetos"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal 3 -->
+      <div
+        id="modal-2"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+      >
+        <div class="bg-white rounded-xl p-6 max-w-lg w-full relative">
+          <button
+            onclick="closeModal(2)"
+            class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl"
+          >
+            &times;
+          </button>
+          <h3 class="text-2xl font-bold mb-2 text-center">
+            Plataforma de Desenvolvimento de Software
+          </h3>
+          <p class="text-gray-700 mb-4">
+            A matéria aborda ferramentas, ambientes e metodologias usados no
+            desenvolvimento de sistemas. O foco está na integração de
+            tecnologias, e automação de processos para garantir eficiência e
+            qualidade no ciclo de desenvolvimento.
+          </p>
+          <h3 class="text-2xl font-bold mb-2 text-center">
+            Docente<br />Claudinei Brito Junior
+          </h3>
+          <div class="flex justify-center mt-4">
+            <img
+              src="./assets/imgs/claudinei.jfif"
+              class="w-32 h-32 object-cover rounded-full shadow-md"
+              alt="fabrica-projetos"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção: Membros do Grupo -->
+    <section id="membros" class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-700">
+          Membros do Grupo
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <!-- Membro 1 -->
+          <div class="bg-white rounded-lg shadow p-6 text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Foto Membro 1"
+              class="w-24 h-24 mx-auto rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold">Ana Souza</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Responsável pelo front-end e design da interface da aplicação.
+            </p>
+          </div>
+
+          <!-- Membro 2 -->
+          <div class="bg-white rounded-lg shadow p-6 text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Foto Membro 2"
+              class="w-24 h-24 mx-auto rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold">Carlos Lima</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Desenvolvedor back-end e integração com banco de dados.
+            </p>
+          </div>
+
+          <!-- Membro 3 -->
+          <div class="bg-white rounded-lg shadow p-6 text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Foto Membro 3"
+              class="w-24 h-24 mx-auto rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold">Juliana Rocha</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Gerente de projeto, controle de tarefas e cronograma.
+            </p>
+          </div>
+
+          <!-- Membro 4 -->
+          <div class="bg-white rounded-lg shadow p-6 text-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Foto Membro 4"
+              class="w-24 h-24 mx-auto rounded-full mb-4"
+            />
+            <h3 class="text-xl font-semibold">Lucas Fernandes</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              Responsável por testes e documentação técnica do sistema.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-white py-6 mt-12">
+      <div class="container mx-auto px-4 text-center text-sm text-gray-500">
+        © 2025 Fábrica de Projetos — Grupo de Desenvolvimento
+      </div>
+    </footer>
+
+    <!-- Script de controle dos modais -->
+    <script>
+      function openModal(index) {
+        document.getElementById(`modal-${index}`).classList.remove("hidden");
+      }
+
+      function closeModal(index) {
+        document.getElementById(`modal-${index}`).classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>
