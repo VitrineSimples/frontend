@@ -12,11 +12,11 @@ import {
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import imagem from "../../public/tree-736885_1280.jpg";
-import logo from "../../public/logo.svg";
+import imagem from "@/public/tree-736885_1280.jpg";
+import logo from "@/public/logo.svg";
 import { SideBarBody, SideBarLink, SideBar } from "./ConfigSideBar";
 
-export function SideBarDemo() {
+export function SideBarComponent() {
   const links = [
     {
       label: "Página Principal",
@@ -75,7 +75,7 @@ export function SideBarDemo() {
         <div>
           <SideBarLink
             link={{
-              label: "Manu Arora",
+              label: "User Example",
               href: "#",
               icon: (
                 <Image

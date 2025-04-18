@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body
         className={`${lspartan.variable} ${questrial.variable} ${roboto.variable} antialiased font-mono`}
       >
