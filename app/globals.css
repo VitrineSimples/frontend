@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Fonts */
+  --font-logo-1: var(--font-spartan);
+  --font-logo-2: var(--font-questrial);
+  --font-mono: var(--font-roboto);
+
+  /* Colors */
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+
+  --color-contrast: var(--contrast);
+
+  --color-sucess-text: var(--sucess-text);
+  --color-error-text: var(--error-text);
+  --color-warning-text: var(--warning-text);
+  --color-info-text: var(--info-text);
+
+  --color-sucess-bg: var(--sucess-bg);
+  --color-error-bg: var(--error-bg);
+  --color-warning-bg: var(--warning-bg);
+  --color-info-bg: var(--info-bg);
+
+  --shadow-blue: var(--shadow-blue);
+}
+
+:root {
+  --brand-100: #00aeef;
+  --brand-200: #0088bb;
+  --contrast: #c84d4d;
+
+  --sucess-text: #66a07c;
+  --error-text: #8e4e5a;
+  --warning-text: #a27653;
+  --info-text: #5e8788;
+
+  --sucess-bg: #d7e7dd;
+  --error-bg: #ffc5d1;
+  --warning-bg: #f4c8ac;
+  --info-bg: #cde5e7;
+
+  --shadow-blue: 0 4px 10px rgba(0, 174, 239, 0.3);
+}
+
+.dark {
+  --brand-100: #0088bb;
+  --brand-200: #00aeef;
+
+  --sucess-text: #d7e7dd;
+  --error-text: #ffc5d1;
+  --warning-text: #f4c8ac;
+  --info-text: #cde5e7;
+
+  --sucess-bg: #66a07c;
+  --error-bg: #8e4e5a;
+  --warning-bg: #a27653;
+  --info-bg: #5e8788;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-mono);
+  }
+
+  body {
+    transition: all 0.5s;
+  }
+}
