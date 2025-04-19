@@ -1,48 +1,177 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fábrica de Projetos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
-</head>
-<body class="font-sans bg-gray-50 text-gray-800">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fábrica de Projetos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-white shadow sticky top-0 z-50">
+      <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-600">Fábrica de Projetos</h1>
+        <ul class="flex space-x-6 text-sm md:text-base">
+          <li><a href="#disciplina" class="hover:text-blue-600">Disciplina</a></li>
+          <li><a href="#empresa" class="hover:text-blue-600">Empresa</a></li>
+          <li><a href="#tema" class="hover:text-blue-600">Projeto</a></li>
+          <li><a href="#membros" class="hover:text-blue-600">Grupo</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Navbar -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">Fábrica de Projetos</h1>
-      <ul class="flex space-x-6 text-sm md:text-base">
-        <li><a href="#disciplina" class="hover:text-blue-600">Disciplina</a></li>
-        <li><a href="#empresa" class="hover:text-blue-600">Empresa</a></li>
-        <li><a href="#tema" class="hover:text-blue-600">Projeto</a></li>
-        <li><a href="#membros" class="hover:text-blue-600">Grupo</a></li>
-      </ul>
-    </nav>
-  </header>
-<section id="empresa" class="py-20 bg-gray-100">
-    <div class="container mx-auto px-6 text-center animate-fade-in duration-1000 ease-out">
-      <div class="max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-lg transition-transform duration-300 ease-in-out hover:scale-125">
-        
-        <h2 class="text-4xl font-extrabold mb-6 text-blue-700">Sobre a Empresa</h2>
-        
-        <p class="text-lg leading-relaxed text-gray-700">
-            A VitrineSimples é uma empresa dedicada ao desenvolvimento de sistemas digitais que transformam 
-            a experiência de varejo, oferecendo soluções práticas e inovadoras para lojistas. Especializada 
-            em tecnologia para exposição de produtos, a VitrineSimples cria ferramentas que simplificam a gestão
-            e amplificam o impacto das vitrines digitais. Neste projeto, nosso grupo está desenvolvendo um 
-            sistema de gerenciamento de exposição de produtos, projetado para permitir que vendedores organizem,
-            promovam e monitorem suas mercadorias de forma eficiente, intuitiva e visualmente atraente, 
-            garantindo maior visibilidade e engajamento com seus clientes
-        </p>
+    <!-- Seção: Membros do Grupo -->
+    <section id="membros" class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-black-700">
+          Membros do Grupo
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 ml-auto">
+          <!-- Membros -->
+
+          <!--MEMBRO1-->
+          <div onclick="openModal(1)" class="group bg-white rounded-2xl shadow p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRopM2xwCAkoiv5fEy2r6TdQ0IT2riU0c83xd3lLIolxRr9YkS58r2DNNQ8ST-0Qve-oo-ER5Cw1kFGTbdJ387V4MKeaMsJJh-sZNA0Pat4ttA4oOlhOMxJYVX4Fa9FTQ0KaPMA_sMSvY/s1600/dmc1.jpg" alt="Foto Membro 1" class="w-24 h-24 mx-auto rounded-lg mb-4" />
+            <h3 class="text-xl font-semibold text-black group-hover:text-white transition-colors duration-300">Guilherme Dorce de Britto</h3>
+            <p class="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">Desenvolvedor / Designer</p>
+          </div>
+
+          <!--MEMBRO2-->
+          <div onclick="openModal(2)" class="group bg-white rounded-2xl shadow p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
+            <img src="https://s3.eu-central-1.wasabisys.com/open3dlab-thumbs/item_thumb_next/172080/tmv.png" alt="Foto Membro 2" class="w-24 h-24 mx-auto rounded-lg mb-4" />
+            <h3 class="text-xl font-semibold group-hover:text-white transition-colors duration-300">Rodrigo Shinji Yamashita</h3>
+            <p class="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">Scrum Master</p>
+          </div>
+          
+          <!--MEMBRO3-->
+          <div onclick="openModal(3)" class="group bg-white rounded-2xl shadow p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
+            <img src="https://pm1.aminoapps.com/7180/82e7d622a35deb104131866dc254e9a68220469cr1-935-935v2_00.jpg" alt="Foto Membro 3" class="w-24 h-24 mx-auto rounded-lg mb-4" />
+            <h3 class="text-xl font-semibold group-hover:text-white transition-colors duration-300">Thiago Tsuyoshi Okada Aoki</h3>
+            <p class="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">Desenvolvedor / Designer</p>
+          </div>
+
+          <!--MEMBRO4-->
+          <div onclick="openModal(4)" class="group bg-white rounded-2xl shadow p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
+            <img src="https://pm1.aminoapps.com/7180/3a5a4b622424839c70f736f38603b253e437d900r1-964-964v2_00.jpg" alt="Foto Membro 4" class="w-24 h-24 mx-auto rounded-lg mb-4" />
+            <h3 class="text-xl font-semibold group-hover:text-white transition-colors duration-300">Vanessa Kaori Kurauchi</h3>
+            <p class="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">Desenvolvedora/ Supervisora de Qualidade</p>
+          </div>
+
+          <!--MEMBRO5-->
+          <div onclick="openModal(5)" class="group bg-white rounded-2xl shadow p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
+            <img src="https://pm1.aminoapps.com/7141/9ba2bb8cb4f5460fa6b3db2f89ac2040e00094dcr1-645-485v2_uhq.jpg" alt="Foto Membro 5" class="w-24 h-24 mx-auto rounded-lg mb-4" />
+            <h3 class="text-xl font-semibold group-hover:text-white transition-colors duration-300">Estevão Alves</h3>
+            <p class="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">Product Owner</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+
+    <!-- Cards 1 -->
+    <div id="modal-1" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+      <div id="modal-content-1" class="bg-white rounded-xl max-w-lg w-full relative shadow p-6 transform scale-0 opacity-0 blur-sm transition-all duration-300">
+        <button onclick="closeModal(1)" class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+        <div class="flex justify-center mt-4">
+          <img src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/11/cbum-praga-pro-open-e1732033617756.jpeg?w=1078" class="w-32 h-32 object-cover rounded-full shadow-md" alt="dorce" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-center">Guilherme Dorce de Britto</h3>
+        <p class="text-gray-700 mb-4">
+          Responsável por criar produtos digitais que unam funcionalidade e boa experiência visual. Como designer cuidou da aparência e usabilidade, garantindo uma interface clara e atrativa. 
+          Já como desenvolvedor transforma essas ideias em código, garantindo que tudo funcione de forma eficiente e segura, entregando soluções que são bonitas, intuitivas e funcionais.
+        </p>
+      </div>
     </div>
-  </section>
-</body>
+
+     <!-- Cards 2 -->
+    <div id="modal-2" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+      <div id="modal-content-2" class="bg-white rounded-xl max-w-lg w-full relative shadow p-6 transform scale-0 opacity-0 blur-sm transition-all duration-300">
+        <button onclick="closeModal(2)" class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+        <div class="flex justify-center mt-4">
+          <img src="https://i0.wp.com/www.rapdab.com.br/wp-content/uploads/2020/07/leo-stronda.jpg?fit=1920%2C1080&ssl=1" class="w-32 h-32 object-cover rounded-full shadow-md" alt="rodrigo" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-center">Rodrigo Shinji Yamashita</h3>
+        <p class="text-gray-700 mb-4">
+          O Scrum Master é o facilitador do time ágil. Ele ajuda a equipe a seguir os princípios do Scrum, remove impedimentos, 
+          promove a colaboração e garante que todos estejam alinhados com os objetivos do projeto. Seu foco é criar um ambiente produtivo, 
+          onde o time possa entregar valor de forma contínua e eficiente.</p>
+      </div>
+    </div>
+
+    <!-- Cards 3 -->
+    <div id="modal-3" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+      <div id="modal-content-3" class="bg-white rounded-xl max-w-lg w-full relative shadow p-6 transform scale-0 opacity-0 blur-sm transition-all duration-300">
+        <button onclick="closeModal(3)" class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+        <div class="flex justify-center mt-4">
+          <img src="https://pbs.twimg.com/media/Fvpvz5iX0AEjtWb.jpg" class="w-32 h-32 object-cover rounded-full shadow-md" alt="thiago" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-center">Thiago Tsuyoshi Okada Aoki</h3>
+        <p class="text-gray-700 mb-4">
+          Responsável por criar produtos digitais que unam funcionalidade e boa experiência visual. Como designer cuidou da aparência e usabilidade, garantindo uma interface clara e atrativa. 
+          Já como desenvolvedor transforma essas ideias em código, garantindo que tudo funcione de forma eficiente e segura, entregando soluções que são bonitas, intuitivas e funcionais.</p>
+      </div>
+    </div>
+
+    <!-- Cards 4 -->
+    <div id="modal-4" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+      <div id="modal-content-4" class="bg-white rounded-xl max-w-lg w-full relative shadow p-6 transform scale-0 opacity-0 blur-sm transition-all duration-300">
+        <button onclick="closeModal(4)" class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+        <div class="flex justify-center mt-4">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRliHGMqR4cZtXtJetx_86yVoOmTzVKbLn-oQ&s" class="w-32 h-32 object-cover rounded-full shadow-md" alt="vanessa" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-center">Vanessa Kaori Kurauchi</h3>
+        <p class="text-gray-700 mb-4">Uma pessoa que atua como desenvolvedora, escrevendo código e implementando funcionalidades, e também como supervisora de qualidade, garantindo que o produto final esteja livre de erros e atenda aos padrões exigidos. </p>
+      </div>
+    </div>
+
+    <!-- Cards 5 -->
+    <div id="modal-5" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+      <div id="modal-content-5" class="bg-white rounded-xl max-w-lg w-full relative shadow p-6 transform scale-0 opacity-0 blur-sm transition-all duration-300">
+        <button onclick="closeModal(5)" class="absolute top-3 right-4 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+        <div class="flex justify-center mt-4">
+          <img src="https://m.media-amazon.com/images/M/MV5BNzMxNzU0MTYzNV5BMl5BanBnXkFtZTcwNzU0Njg3Mw@@._V1_.jpg" class="w-32 h-32 object-cover rounded-full shadow-md" alt="estevao" />
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-center">Estevão Alves</h3>
+        <p class="text-gray-700 mb-4">O Product Owner é o responsável por definir a visão do produto e priorizar as funcionalidades. Ele atua como a ponte entre o time de desenvolvimento e os stakeholders, garantindo que o que está sendo desenvolvido entrega valor ao negócio e aos usuários.</p>
+      </div>
+    </div>
+
+    <script>
+      function openModal(index) {
+        const modal = document.getElementById(`modal-${index}`);
+        const content = document.getElementById(`modal-content-${index}`);
+
+        modal.classList.remove("hidden");
+        setTimeout(() => {
+          modal.classList.add("opacity-100");
+          modal.classList.remove("opacity-0");
+
+          content.classList.remove("scale-0", "opacity-0", "blur-sm");
+          content.classList.add("scale-100", "opacity-100", "blur-0");
+        }, 10);
+      }
+
+      function closeModal(index) {
+        const modal = document.getElementById(`modal-${index}`);
+        const content = document.getElementById(`modal-content-${index}`);
+
+        modal.classList.remove("opacity-100");
+        modal.classList.add("opacity-0");
+
+        content.classList.remove("scale-100", "opacity-100", "blur-0");
+        content.classList.add("scale-0", "opacity-0", "blur-sm");
+
+        setTimeout(() => {
+          modal.classList.add("hidden");
+        }, 300);
+      }
+    </script>
+  </body>
 </html>
