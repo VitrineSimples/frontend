@@ -25,6 +25,8 @@
   --color-error-bg: var(--error-bg);
   --color-warning-bg: var(--warning-bg);
   --color-info-bg: var(--info-bg);
+
+  --shadow-blue: var(--shadow-blue);
 }
 
 :root {
@@ -41,6 +43,8 @@
   --error-bg: #ffc5d1;
   --warning-bg: #f4c8ac;
   --info-bg: #cde5e7;
+
+  --shadow-blue: 0 4px 10px rgba(0, 174, 239, 0.3);
 }
 
 .dark {

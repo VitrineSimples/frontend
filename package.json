@@ -19,6 +19,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.2.0",
+    "tailwind-variants": "^1.0.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
@@ -31,5 +32,9 @@
     "eslint-config-next": "15.3.1",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:VitrineSimples/frontend.git",
+  "author": "stevalves <ealves1710@hotmail.com>",
+  "license": "MIT"
 }
