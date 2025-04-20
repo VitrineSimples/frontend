@@ -37,7 +37,9 @@ const NavList = ({ navLinks }: iNavList) => {
             key={idx}
             className="cursor-pointer hover:text-brand-100 transition-colors duration-300"
           >
-            <Link href={link.href}>{link.label}</Link>
+            <Link href={link.href} onClick={() => setOpen(!open)}>
+              {link.label}
+            </Link>
           </li>
         ))}
       </ul>

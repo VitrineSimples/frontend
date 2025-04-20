@@ -38,7 +38,7 @@ export default function Home() {
           <ThemeToggle />
         </div>
       </div>
-      <header className="shadow-blue min-h-[80px] flex items-center relative">
+      <header className="shadow-blue min-h-[80px] flex items-center relative md:sticky top-0 bg-white z-[999]">
         <div className="container mx-auto h-full flex flex-row items-center justify-between px-4 md:px-0">
           <a
             href="#"
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
       </header>
       <div id="home" className="flex flex-col gap-2 h-[calc(100vh-120px)]">
-        <div className="flex flex-col gap-6 items-center justify-center xl:justify-end flex-1">
+        <div className="flex flex-col gap-6 items-center justify-center 2xl:justify-end flex-1 lg:translate-y-12 2xl:translate-y-0">
           <FlipWords
             text="O caminho para uma loja"
             textAfter="começa aqui!"
@@ -67,15 +67,16 @@ export default function Home() {
           <Image
             src={leftDraw}
             alt="desenho de uma loja"
-            className="w-full max-w-[720px]"
+            className="w-2/3 max-w-[460px] 2xl:max-w-[720px]"
           />
           <Image
             src={rightDraw}
             alt="desenho de uma loja"
-            className="justify-self-end w-full max-w-[720px]"
+            className="justify-self-end w-2/3 max-w-[460px] 2xl:max-w-[720px]"
           />
         </div>
       </div>
+      <div className="min-h-screen"></div>
     </>
   );
 }
