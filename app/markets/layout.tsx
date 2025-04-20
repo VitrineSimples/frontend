@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SideBarComponent } from "../components/SideBar/SideBar";
 
 export const metadata: Metadata = {
-  title: "VitrineSimples",
+  title: "Guren - Markets",
   description: "... for you",
 };
 

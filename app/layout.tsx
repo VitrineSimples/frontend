@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { League_Spartan, Questrial, Roboto } from "next/font/google";
 import "./globals.css";
+import "aos/dist/aos.css";
+import { AOSInit } from "./components/AOSInit";
 
 const lspartan = League_Spartan({
   variable: "--font-spartan",
@@ -19,7 +21,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "VitrineSimples",
+  title: "Guren",
   description: "... for you",
 };
 
@@ -31,8 +33,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${lspartan.variable} ${questrial.variable} ${roboto.variable} antialiased font-mono`}
+        className={`${lspartan.variable} ${questrial.variable} ${roboto.variable} antialiased font-mono bg-gray-100`}
       >
+        <AOSInit />
         {children}
       </body>
     </html>
