@@ -49,8 +49,8 @@ export default function Home() {
           <NavList navLinks={navValues} />
         </div>
       </header>
-      <div id="home" className="flex flex-col gap-2 h-[calc(100vh-120px)]">
-        <div className="flex flex-col gap-6 items-center justify-center 2xl:justify-end flex-1 lg:translate-y-12 2xl:translate-y-0">
+      <div id="home" className="flex flex-col justify-end gap-2 h-[calc(100vh-120px)] relative">
+        <div className="absolute flex flex-col gap-6 items-center justify-center top-2/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full text-center">
           <FlipWords
             text="O caminho para uma loja"
             textAfter="começa aqui!"
@@ -67,12 +67,12 @@ export default function Home() {
           <Image
             src={leftDraw}
             alt="desenho de uma loja"
-            className="w-2/3 max-w-[460px] 2xl:max-w-[720px]"
+            className="w-full max-w-[460px] 2xl:max-w-[720px]"
           />
           <Image
             src={rightDraw}
             alt="desenho de uma loja"
-            className="justify-self-end w-2/3 max-w-[460px] 2xl:max-w-[720px]"
+            className="justify-self-end w-full max-w-[460px] 2xl:max-w-[720px]"
           />
         </div>
       </div>
