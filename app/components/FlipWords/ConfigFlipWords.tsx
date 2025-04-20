@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function ConfigFlipWords({
   words,
-  duration = 3000,
+  duration = 2000,
   className,
 }: {
   words: string[];
@@ -57,7 +57,7 @@ export default function ConfigFlipWords({
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-brand-200 dark:text-neutral-100 px-2",
+          "z-10 inline-block relative text-left text-brand-200 px-2",
           className
         )}
         key={currentWord}

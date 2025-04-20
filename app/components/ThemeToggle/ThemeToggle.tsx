@@ -41,7 +41,7 @@ const ThemeToggle = () => {
       animate={{ scale: 1 }}
       exit={{ scale: 0.8 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="rounded-full bg-gray-200 text-gray-800 flex p-1 gap-4 cursor-pointer"
+      className="rounded-full bg-white text-black flex p-1 gap-4 cursor-pointer"
     >
       <motion.div
         initial={{ opacity: 0 }}

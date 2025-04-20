@@ -16,6 +16,13 @@
 
   --color-contrast: var(--contrast);
 
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+
   --color-sucess-text: var(--sucess-text);
   --color-error-text: var(--error-text);
   --color-warning-text: var(--warning-text);
@@ -34,6 +41,13 @@
   --brand-200: #0088bb;
   --contrast: #c84d4d;
 
+  --gray-100: #f2f2f2;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #808387;
+  --gray-500: #495057;
+  --gray-600: #212529;
+
   --sucess-text: #66a07c;
   --error-text: #8e4e5a;
   --warning-text: #a27653;
@@ -50,6 +64,13 @@
 .dark {
   --brand-100: #0088bb;
   --brand-200: #00aeef;
+
+  --gray-100: #121212; 
+  --gray-200: #1e1e1e;
+  --gray-300: #2a2a2a;
+  --gray-400: #555;   
+  --gray-500: #adb5bd;
+  --gray-600: #f1f3f5;
 
   --sucess-text: #d7e7dd;
   --error-text: #ffc5d1;
@@ -70,7 +91,11 @@
     font-family: var(--font-mono);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    transition: all 0.5s;
+    transition: all 0.7s;
   }
 }
