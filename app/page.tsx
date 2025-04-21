@@ -1,25 +1,28 @@
+import Image from "next/image";
 import Link from "next/link";
 import FlipWords from "./components/FlipWords/FlipWords";
 import leftDraw from "@/public/left_draw_gif.svg";
 import rightDraw from "@/public/right_draw_gif.svg";
-import Image from "next/image";
 import { IconMail, IconBrandWhatsapp } from "@tabler/icons-react";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 import NavList from "./components/HeaderNav/NavList";
 import logo from "@/public/logo.svg";
+import Projeto from "./components/LPSections/Projeto";
+import Empresa from "./components/LPSections/Empresa";
+import Disciplinas from "./components/LPSections/Disciplinas";
 
 const navValues = [
   { label: "Home", href: "#" },
+  { label: "Projeto", href: "#projeto" },
   { label: "Disciplina", href: "#disciplina" },
   { label: "Empresa", href: "#empresa" },
-  { label: "Projeto", href: "#projeto" },
   { label: "Membros", href: "#membros" },
 ];
 
 export default function Home() {
   return (
     <>
-      <div className="bg-brand-200 w-full h-10">
+      <div id="subHeader" className="bg-brand-200 w-full h-10">
         <div className="container mx-auto flex items-center justify-between h-full px-4 md:px-12">
           <div id="subHeader-contact" className="flex gap-4 text-gray-50">
             <a href="mailto:guren@shop.com" className="flex gap-2">
@@ -89,7 +92,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="min-h-screen"></div>
+      <Projeto />
+      <Empresa />
+      <Disciplinas />
     </>
   );
 }
