@@ -6,7 +6,7 @@ export default function Projeto() {
     <section id="projeto" className="py-16 bg-gray-200">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
+          <div data-aos="fade-right">
             <h2 className="text-3xl font-bold text-brand-200 mb-6">
               Tema do Projeto
             </h2>
@@ -27,7 +27,7 @@ export default function Projeto() {
               com os clientes e potencializar as vendas no ambiente digital.
             </p>
           </div>
-          <div>
+          <div data-aos="fade-left">
             <Image
               src={projetoImage}
               alt="vitrine digital"

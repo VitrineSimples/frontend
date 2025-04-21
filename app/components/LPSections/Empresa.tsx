@@ -2,7 +2,7 @@ export default function Empresa() {
   return (
     <section id="empresa" className="py-20 bg-gray-100">
       <div className="container mx-auto md:text-center text-left">
-        <div className="max-w-3xl mx-auto px-4 rounded-2xl">
+        <div data-aos="fade-down" className="max-w-3xl mx-auto px-4 rounded-2xl">
           <h2 className="text-3xl font-extrabold mb-6 text-brand-200">
             Sobre a Empresa
           </h2>

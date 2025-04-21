@@ -32,7 +32,7 @@ export const Modal = ({ children, toggleModal, noClose }: ModalProps) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black/85 z-[1000]">
       <div
         ref={noClose ? null : ref}
-        className="w-fit min-w-[550px] min-h-[450px] bg-gray-100 rounded-lg p-4 relative overflow-y-auto zoom-out-125"
+        className="animate-in zoom-in-70 duration-500 w-fit md:min-w-[550px] my-2 md:max-w-fit max-w-[95vw] min-h-[450px] bg-gray-100 rounded-lg p-4 relative overflow-y-auto zoom-out-125"
       >
         {!noClose && (
           <button

@@ -53,13 +53,15 @@ export default function Disciplinas() {
 
   return (
     <>
-      <section className="py-16 bg-gray-200">
+      <section className="py-16 bg-gray-200" id="disciplina">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-brand-200">
             Disciplinas
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div
+              data-aos="flip-left"
+              data-aos-delay="100"
               onClick={() => handleModal(0)}
               className="bg-gray-300 shadow-md rounded-2xl overflow-hidden cursor-pointer border-2 border-brand-200 hover:border-brand-100 transform-border duration-300"
             >
@@ -75,6 +77,8 @@ export default function Disciplinas() {
               </div>
             </div>
             <div
+              data-aos="flip-left"
+              data-aos-delay="200"
               onClick={() => handleModal(1)}
               className="bg-gray-300 shadow-md rounded-2xl overflow-hidden cursor-pointer border-2 border-brand-200 hover:border-brand-100 transform-border duration-300"
             >
@@ -90,6 +94,8 @@ export default function Disciplinas() {
               </div>
             </div>
             <div
+              data-aos="flip-left"
+              data-aos-delay="300"
               onClick={() => handleModal(2)}
               className="bg-gray-300 shadow-md rounded-2xl overflow-hidden cursor-pointer border-2 border-brand-200 hover:border-brand-100 transform-border duration-300"
             >
@@ -120,11 +126,17 @@ function ModalDisciplina(disciplina: iDisciplina): React.ReactElement {
   const { nomeDisciplina, professor, imagem, descricao } = disciplina;
   return (
     <div className="bg-gray-100 rounded-xl p-6 max-w-lg w-full">
-      <h3 className="text-2xl font-bold mb-2 text-center text-brand-200">{nomeDisciplina}</h3>
-      <p className="text-gray-600 mb-4">{descricao}</p>
-      <h3 className="text-2xl font-bold mb-2 text-center flex flex-col gap-2">
-        <span className="text-gray-600 font-light">Docente</span>
-        <span className="text-brand-200">{professor}</span>
+      <h3 className="text-xl md:text-2xl font-bold mb-2 text-center text-brand-200">
+        {nomeDisciplina}
+      </h3>
+      <p className="text-gray-600 mb-4 text-sm md:text-base">{descricao}</p>
+      <h3 className="mb-2 text-center flex flex-col">
+        <span className="text-gray-600 font-light text-lg md:text-xl">
+          Docente
+        </span>
+        <span className="text-brand-200 font-bold text-xl md:text-2xl">
+          {professor}
+        </span>
       </h3>
       <div className="flex justify-center mt-4">
         <Image
