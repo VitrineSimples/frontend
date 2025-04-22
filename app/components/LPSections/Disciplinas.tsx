@@ -21,7 +21,7 @@ interface iDisciplina {
 const disciplinas: iDisciplina[] = [
   {
     nomeDisciplina: "Fábrica de Projetos",
-    professor: "Cristovam",
+    professor: "Cristovam E. Herculiani",
     imagem: LP_Cristovam,
     descricao:
       "A disciplina de Fábrica de Projetos tem como objetivo proporcionar aos alunos uma experiência prática no desenvolvimento de projetos reais. Os alunos trabalham em equipe, aplicando os conhecimentos adquiridos em sala de aula para criar soluções inovadoras e funcionais.",
@@ -35,7 +35,7 @@ const disciplinas: iDisciplina[] = [
   },
   {
     nomeDisciplina: "Plataforma de Desenvolvimento de Software",
-    professor: "Claudinei",
+    professor: "Claudinei Brito Junior",
     imagem: LP_Claudinei,
     descricao:
       "A disciplina de Plataforma de Desenvolvimento de Software aborda as principais ferramentas e metodologias utilizadas no desenvolvimento de software. Os alunos aprendem sobre controle de versão, integração contínua, testes automatizados e práticas ágeis, preparando-os para o mercado de trabalho.",
