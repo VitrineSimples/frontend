@@ -10,13 +10,13 @@ import logo from "@/public/logo.svg";
 import Projeto from "./components/LPSections/Projeto";
 import Empresa from "./components/LPSections/Empresa";
 import Disciplinas from "./components/LPSections/Disciplinas";
-import userStockImage from "@/public/userStockImage.jpg";
+import Integrantes from "./components/LPSections/Integrantes";
 
 const navValues = [
   { label: "Home", href: "#home" },
   { label: "Projeto", href: "#projeto" },
-  { label: "Disciplina", href: "#disciplina" },
   { label: "Empresa", href: "#empresa" },
+  { label: "Disciplina", href: "#disciplina" },
   { label: "Membros", href: "#membros" },
 ];
 
@@ -96,84 +96,15 @@ export default function Home() {
       <Projeto />
       <Empresa />
       <Disciplinas />
-      <section id="membros" className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-black-700">
-            Membros do Grupo
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 ml-auto">
-            <div className="group bg-white rounded-2xl p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
-              <Image
-                src={userStockImage}
-                alt="Foto Membro 1"
-                className="w-24 h-24 mx-auto rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-black group-hover:text-white transition-colors duration-300">
-                Guilherme Dorce de Britto
-              </h3>
-              <p className="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">
-                Desenvolvedor / Designer
-              </p>
-            </div>
-
-            <div className="group bg-white rounded-2xl p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
-              <Image
-                src={userStockImage}
-                alt="Foto Membro 2"
-                className="w-24 h-24 mx-auto rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold group-hover:text-white transition-colors duration-300">
-                Rodrigo Shinji Yamashita
-              </h3>
-              <p className="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">
-                Scrum Master
-              </p>
-            </div>
-
-            <div className="group bg-white rounded-2xl p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
-              <Image
-                src={userStockImage}
-                alt="Foto Membro 3"
-                className="w-24 h-24 mx-auto rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold group-hover:text-white transition-colors duration-300">
-                Thiago Tsuyoshi Okada Aoki
-              </h3>
-              <p className="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">
-                Desenvolvedor / Designer
-              </p>
-            </div>
-
-            <div className="group bg-white rounded-2xl p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
-              <Image
-                src={userStockImage}
-                alt="Foto Membro 4"
-                className="w-24 h-24 mx-auto rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold group-hover:text-white transition-colors duration-300">
-                Vanessa Kaori Kurauchi
-              </h3>
-              <p className="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">
-                Desenvolvedora/ Supervisora de Qualidade
-              </p>
-            </div>
-
-            <div className="group bg-white rounded-2xl p-6 text-center overflow-hidden cursor-pointer transition-all duration-500 shadow-md hover:scale-105 hover:bg-[#495057]">
-              <Image
-                src={userStockImage}
-                alt="Foto Membro 5"
-                className="w-24 h-24 mx-auto rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold group-hover:text-white transition-colors duration-300">
-                Estevão Alves
-              </h3>
-              <p className="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">
-                Product Owner
-              </p>
-            </div>
-          </div>
+      <Integrantes />
+      <footer className="bg-gray-200 py-6">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-600">
+            &copy; {new Date().getFullYear()} Guren
+          </p>
+          <p className="text-gray-600">Desenvolvido por Guris.</p>
         </div>
-      </section>
+      </footer>
     </>
   );
 }
