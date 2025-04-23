@@ -52,7 +52,7 @@ const integrantes: iIntegrante[] = [
   },
   {
     id: "estevaodev",
-    nome: "Estevão Alves",
+    nome: "Estevão Alves dos Santos",
     cargo: "Product Owner",
     imagem: Estevao,
     cargoDescricao:
@@ -93,7 +93,7 @@ export default function Integrantes() {
                 <h3 className="text-xl font-semibold text-brand-100 group-hover:text-brand-200 transition-colors duration-300">
                   {integrante.nome}
                 </h3>
-                <p className="text-sm text-gray-600 mt-2 group-hover:text-white transition-colors duration-300">
+                <p className="text-sm text-gray-600 mt-2 transition-colors duration-300">
                   {integrante.cargo}
                 </p>
               </div>
