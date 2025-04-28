@@ -103,12 +103,9 @@ export const Logo = () => {
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="whitespace-pre"
+        className="whitespace-pre font-logo-2 uppercase tracking-widest font-bold text-brand-100 text-xl"
       >
-        <b className="font-logo-1 font-bold text-brand-100 text-xl">Intra</b>
-        <span className="font-logo-2 font-light text-brand-200 text-lg">
-          Vibe
-        </span>
+        Guren
       </motion.span>
     </Link>
   );
