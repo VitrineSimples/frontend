@@ -96,7 +96,7 @@ export function SideBarComponent() {
 export const Logo = () => {
   return (
     <Link
-      href="#"
+      href="/"
       className="font-normal flex space-x-2 items-center text-sm py-1 relative z-20"
     >
       <Image className="h-8 w-8 flex-shrink-0" src={logo} alt="Logo" />
