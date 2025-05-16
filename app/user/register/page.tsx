@@ -15,7 +15,7 @@ export default function RegisterSection() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log({ name, email, password });
-    router.push("/markets/market_one")
+    router.push("/markets/allter")
   };
 
   return (
@@ -66,7 +66,7 @@ export default function RegisterSection() {
 
           <button
             type="submit"
-            className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
           >
             Registrar
           </button>
