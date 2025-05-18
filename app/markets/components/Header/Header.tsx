@@ -2,8 +2,8 @@ import {
   IconBuildingStore,
   IconSearch,
   IconHeart,
-  IconShoppingCart,
 } from "@tabler/icons-react";
+import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
             <IconHeart className="w-7 h-7 md:w-8 md:h-8" />
           </a>
           <a href="#">
-            <IconShoppingCart className="w-7 h-7 md:w-8 md:h-8" />
+            <ShoppingCart className="w-7 h-7 md:w-8 md:h-8" />
           </a>
         </div>
       </div>
