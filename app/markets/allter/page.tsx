@@ -5,6 +5,7 @@ import Carousel from "../components/Carousel/Carousel";
 import Benefits from "../components/Benefits";
 import Sazonal from "../components/Sazonal";
 import Produtos from "../components/Produtos";
+import Footer from "../components/Footer";
 
 export default function Allter() {
   return (
@@ -16,6 +17,7 @@ export default function Allter() {
       <Benefits />
       <Sazonal />
       <Produtos />
+      <Footer />
     </>
   );
 }
