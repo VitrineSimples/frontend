@@ -16,7 +16,10 @@ export default function Allter() {
       <Carousel />
       <Benefits />
       <Sazonal />
+      <div className="w-18 h-3 bg-contrast mx-auto my-12 rounded-xl"/>
+      <h2 className="text-center uppercase text-2xl text-contrast font-bold my-2">Produtos</h2>
       <Produtos />
+      <div className="w-18 h-3 bg-contrast mx-auto my-12 rounded-xl"/>
       <Footer />
     </>
   );
