@@ -1,8 +1,28 @@
-import { products } from "@/data";
+'use client'
+
+import { iProduct } from "@/data";
 import { Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Produtos() {
+  const [products, setProducts] = useState<iProduct[]>([]);
+
+  useEffect(() => {
+    fetch('https://localhost:7060/api/Produtos/')
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(console.error);
+  }, []);
+
+  if (products.length === 0) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <h2 className="text-2xl text-gray-500">Nenhum produto encontrado ou backend não conectado</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 p-6 duration-300">
       {products.map((product) => (
@@ -13,7 +33,7 @@ export default function Produtos() {
           <div className="relative w-full">
             <Image
               src={product.image}
-              alt={product.name}
+              alt={product.nome}
               width={400}
               height={300}
               className="w-full h-56 object-cover rounded-xl"
@@ -27,13 +47,13 @@ export default function Produtos() {
           </div>
           <div className="text-center px-2">
             <h2 className="text-lg sm:text-xl font-semibold text-gray-600">
-              {product.name}
+              {product.nome}
             </h2>
             <p className="text-sm text-gray-500 mt-1">{product.description}</p>
           </div>
           <div className="flex items-center justify-between w-full px-1">
             <span className="text-contrast font-bold text-lg sm:text-xl">
-              R$ {product.price.toFixed(2)}
+              R$ {product.preco.toFixed(2)}
             </span>
             <button
               title="Adicionar ao carrinho"

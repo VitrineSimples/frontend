@@ -38,8 +38,8 @@ export default function Sazonal() {
       },
       {
         id: "3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
-        name: "Tênis Casual",
-        price: 149.99,
+        nome: "Tênis Casual",
+        preco: 149.99,
         description: "Tênis casual para o dia a dia",
         image:
           "https://bellindashoes.com.br/cdn/shop/files/2_7bdfd4fb-9e9f-4b73-aacb-702c1d8002d3.png?v=1718081671",
@@ -76,7 +76,7 @@ export default function Sazonal() {
             <div className="relative w-full">
               <Image
                 src={product.image}
-                alt={product.name}
+                alt={product.nome}
                 width={400}
                 height={300}
                 className="w-full h-56 object-cover rounded-xl"
@@ -90,7 +90,7 @@ export default function Sazonal() {
             </div>
             <div className="text-center px-2">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-600">
-                {product.name}
+                {product.nome}
               </h2>
               <p className="text-sm text-gray-500 mt-1">
                 {product.description}
@@ -98,7 +98,7 @@ export default function Sazonal() {
             </div>
             <div className="flex items-center justify-between w-full px-1">
               <span className="text-contrast font-bold text-lg sm:text-xl">
-                R$ {product.price.toFixed(2)}
+                R$ {product.preco.toFixed(2)}
               </span>
               <button
                 title="Adicionar ao carrinho"
