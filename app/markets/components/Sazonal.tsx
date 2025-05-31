@@ -76,7 +76,7 @@ export default function Sazonal() {
             <div className="relative w-full">
               <Image
                 src={product.image}
-                alt={product.nome}
+                alt={product.name}
                 width={400}
                 height={300}
                 className="w-full h-56 object-cover rounded-xl"
@@ -90,7 +90,7 @@ export default function Sazonal() {
             </div>
             <div className="text-center px-2">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-600">
-                {product.nome}
+                {product.name}
               </h2>
               <p className="text-sm text-gray-500 mt-1">
                 {product.description}
@@ -98,7 +98,7 @@ export default function Sazonal() {
             </div>
             <div className="flex items-center justify-between w-full px-1">
               <span className="text-contrast font-bold text-lg sm:text-xl">
-                R$ {product.preco.toFixed(2)}
+                R$ {product.price.toFixed(2)}
               </span>
               <button
                 title="Adicionar ao carrinho"

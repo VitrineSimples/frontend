@@ -3,6 +3,7 @@ import { League_Spartan, Questrial, Roboto } from "next/font/google";
 import "./globals.css";
 import "aos/dist/aos.css";
 import { AOSInit } from "./components/AOSInit";
+import { AuthProvider } from "@/context/Auth/AuthContext";
 
 const lspartan = League_Spartan({
   variable: "--font-spartan",
@@ -36,7 +37,7 @@ export default function RootLayout({
         className={`${lspartan.variable} ${questrial.variable} ${roboto.variable} antialiased font-mono bg-gray-100`}
       >
         <AOSInit />
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
