@@ -1,8 +1,10 @@
+import { iProduct } from "../Product/type";
+
 type Shop = {
   id: string;
   name: string;
   ownerId: string
-  productIds: string[];
+  products: iProduct[];
 };
 
 type ShopContextType = {

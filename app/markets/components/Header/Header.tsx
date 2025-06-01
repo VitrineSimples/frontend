@@ -1,12 +1,8 @@
-import {
-  IconBuildingStore,
-  IconSearch,
-  IconHeart,
-} from "@tabler/icons-react";
+import { IconBuildingStore, IconSearch, IconHeart } from "@tabler/icons-react";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
-const Header = () => {
+const Header = ({ shopName }: { shopName: string }) => {
   return (
     <div
       id="header"
@@ -17,10 +13,7 @@ const Header = () => {
           <h1 className="flex items-center text-contrast">
             <IconBuildingStore className="w-9 h-9 md:w-10 md:h-10 mr-2" />{" "}
             <span className="font-logo-1 font-bold text-2xl md:text-3xl">
-              ALL
-            </span>{" "}
-            <span className="font-logo-2 text-xl md:text-2xl font-medium">
-              ter
+              {shopName}
             </span>
           </h1>
         </Link>

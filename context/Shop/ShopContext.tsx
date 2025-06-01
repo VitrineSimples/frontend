@@ -23,7 +23,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const getShops = async () => {
     try {
       setIsLoading(true)
-      const response = await api.get("api/Shop");
+      const response = await api.get("api/Shops");
       setShops(response.data);
     } catch (error) {
       console.error("Erro ao buscar lojas:", error);
@@ -35,7 +35,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const getShopByName = async (name: string) => {
     try {
       setIsLoading(true)
-      const response = await api.get(`api/Shop/${name}`);
+      const response = await api.get(`api/Shops/${name}`);
       setSelectedShop(response.data);
     } catch (error) {
       console.error(`Erro ao buscar loja com id ${name}:`, error);
@@ -47,7 +47,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const createShop = async (data: Omit<Shop, "id" | "productIds">) => {
     try {
       setIsLoading(true)
-      await api.post("api/Shop", { ...data, userId: user!.id });
+      await api.post("api/Shops", { ...data, userId: user!.id });
       await getShops();
     } catch (error) {
       console.error("Erro ao criar loja:", error);
@@ -63,7 +63,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     try {
       setIsLoading(true)
       if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
-      await api.put(`api/Shop/${id}`, { ...data, userId: user!.id });
+      await api.put(`api/Shops/${id}`, { ...data, userId: user!.id });
       await getShops();
     } catch (error) {
       console.error(`Erro ao atualizar loja com id ${id}:`, error);
@@ -76,7 +76,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     try {
       setIsLoading(true)
       if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
-      await api.delete(`api/Shop/${id}`);
+      await api.delete(`api/Shops/${id}`);
       await getShops();
     } catch (error) {
       console.error(`Erro ao deletar loja com id ${id}:`, error);
