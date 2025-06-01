@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/Input";
-import { registerSchema, RegisterFormData } from "./schema";
-// import { useAuth } from "@/context/Auth/AuthContext";
+import { registerSchema, RegisterFormData, registerSchemaWithoutPassword } from "./schema";
+import { useUser } from "@/context/User/UserContext";
 
 export default function Register() {
-  // const { registerUser } = useAuth(); // <- ajuste conforme seu contexto
+  const { createUser } = useUser();
 
   const {
     register,
@@ -20,9 +20,10 @@ export default function Register() {
     mode: "onChange",
   });
 
-  const onSubmit = (data: RegisterFormData) => {
+  const onSubmit = async (data: RegisterFormData) => {
     console.log("Registro:", data);
-    // registerUser(data); //
+    const newUser = registerSchemaWithoutPassword.parse(data)
+    await createUser(newUser)
   };
 
   return (

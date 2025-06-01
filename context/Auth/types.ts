@@ -6,7 +6,7 @@ interface iLoginFormData {
 interface iAuthContext {
   token: string | null;
   user: iUser | null;
-  login: (loginData: iLoginFormData) => void;
+  login: (loginData: iLoginFormData) => Promise<void>;
   getUser: (token: string) => Promise<void>;
   logout: () => void;
   isLoading: boolean;

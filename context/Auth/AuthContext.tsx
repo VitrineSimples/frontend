@@ -3,13 +3,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { iAuthContext, iLoginFormData, iUser } from "./types";
 import api from "@/lib/api";
+import { useLoading } from "../Loading/LoadingContext";
 
 const AuthContext = createContext<iAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<iUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
     setIsLoading(false);
-  }, []);
+  }, [setIsLoading]);
 
   const login = async (loginData: iLoginFormData): Promise<void> => {
     try {

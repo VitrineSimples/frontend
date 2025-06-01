@@ -22,9 +22,9 @@ export default function Login() {
     mode: "onChange",
   });
 
-  const onSubmit = (data: LoginFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     console.log(data);
-    login(data)
+    await login(data)
     // router.push("/markets/allter");
   };
 

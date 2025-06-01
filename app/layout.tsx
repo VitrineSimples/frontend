@@ -4,6 +4,9 @@ import "./globals.css";
 import "aos/dist/aos.css";
 import { AOSInit } from "./components/AOSInit";
 import { AuthProvider } from "@/context/Auth/AuthContext";
+import { UserProvider } from "@/context/User/UserContext";
+import { ShopProvider } from "@/context/Shop/ShopContext";
+import { LoadingProvider } from "@/context/Loading/LoadingContext";
 
 const lspartan = League_Spartan({
   variable: "--font-spartan",
@@ -37,7 +40,13 @@ export default function RootLayout({
         className={`${lspartan.variable} ${questrial.variable} ${roboto.variable} antialiased font-mono bg-gray-100`}
       >
         <AOSInit />
-        <AuthProvider>{children}</AuthProvider>
+        <LoadingProvider>
+          <AuthProvider>
+            <UserProvider>
+              <ShopProvider>{children}</ShopProvider>
+            </UserProvider>
+          </AuthProvider>
+        </LoadingProvider>
       </body>
     </html>
   );
