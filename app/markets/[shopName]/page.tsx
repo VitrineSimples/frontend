@@ -10,6 +10,8 @@ import Produtos from "../components/Produtos";
 import Footer from "../components/Footer";
 import { useShop } from "@/context/Shop/ShopContext";
 import { use, useEffect } from "react";
+import ShopNotFound from "../components/ShopNotFound";
+import { iSazonal } from "@/context/SeasonalCampaign/type";
 
 interface PageProps {
   params: Promise<{ shopName: string }>;
@@ -26,9 +28,7 @@ export default function MarketPage({ params }: PageProps) {
     fetch();
   }, [shopName]);
 
-  if (!selectedShop) {
-    return <h1>LOJA NAO ENCONTRADA</h1>;
-  }
+  if (!selectedShop) return <ShopNotFound />;
 
   return (
     <>
@@ -37,12 +37,12 @@ export default function MarketPage({ params }: PageProps) {
       <NavBar />
       <Carousel />
       <Benefits />
-      <Sazonal />
+      {/* <Sazonal SeasonalCampaign={{} as iSazonal} /> */}
       <div className="w-18 h-3 bg-contrast mx-auto my-12 rounded-xl" />
       <h2 className="text-center uppercase text-2xl text-contrast font-bold my-2">
         Produtos
       </h2>
-      <Produtos products={selectedShop.products}/>
+      <Produtos products={selectedShop.products} />
       <div className="w-18 h-3 bg-contrast mx-auto my-12 rounded-xl" />
       <Footer />
     </>

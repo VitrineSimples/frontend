@@ -1,7 +1,13 @@
 "use client";
 
 import api from "@/lib/api";
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { Shop, ShopContextType } from "./types";
 import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
@@ -15,6 +21,12 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const { setIsLoading } = useLoading();
   const { user } = useAuth();
 
+  useEffect(() => {
+    (async () => {
+      await getShops();
+    })();
+  }, []);
+
   const isOwnerShop = async (shopName: string): Promise<boolean> => {
     await getShopByName(shopName);
     return selectedShop?.ownerId === user?.id || false;
@@ -22,37 +34,37 @@ export function ShopProvider({ children }: { children: ReactNode }) {
 
   const getShops = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await api.get("api/Shops");
       setShops(response.data);
     } catch (error) {
       console.error("Erro ao buscar lojas:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   const getShopByName = async (name: string) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await api.get(`api/Shops/${name}`);
       setSelectedShop(response.data);
     } catch (error) {
       console.error(`Erro ao buscar loja com id ${name}:`, error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   const createShop = async (data: Omit<Shop, "id" | "productIds">) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       await api.post("api/Shops", { ...data, userId: user!.id });
       await getShops();
     } catch (error) {
       console.error("Erro ao criar loja:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -61,27 +73,27 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     data: Omit<Shop, "id" | "productIds">
   ) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
       await api.put(`api/Shops/${id}`, { ...data, userId: user!.id });
       await getShops();
     } catch (error) {
       console.error(`Erro ao atualizar loja com id ${id}:`, error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   const deleteShop = async (id: string) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
       await api.delete(`api/Shops/${id}`);
       await getShops();
     } catch (error) {
       console.error(`Erro ao deletar loja com id ${id}:`, error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 

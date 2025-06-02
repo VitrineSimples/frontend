@@ -9,7 +9,6 @@ interface iAuthContext {
   login: (loginData: iLoginFormData) => Promise<void>;
   getUser: (token: string) => Promise<void>;
   logout: () => void;
-  isLoading: boolean;
 }
 
 interface iUser {

@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/Input";
 import { LoginFormData, loginSchema } from "./schema";
 import { useAuth } from "@/context/Auth/AuthContext";
+import { useLoading } from "@/context/Loading/LoadingContext";
+import LoadingSpinner from "@/app/components/LoadingSpinner";
+import { useEffect } from "react";
 
 export default function Login() {
-  // const router = useRouter();
-  const { login } = useAuth();
+  const router = useRouter();
+  const { isLoading } = useLoading();
+  const { login, user } = useAuth();
 
   const {
     register,
@@ -23,10 +27,12 @@ export default function Login() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log(data);
-    await login(data)
-    // router.push("/markets/allter");
+    await login(data);
   };
+
+  useEffect(() => {
+    if (user) router.push("/markets");
+  }, [user, router]);
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -75,18 +81,24 @@ export default function Login() {
               </p>
             )}
           </div>
-
-          <button
-            type="submit"
-            className="mt-4 w-full border hover:border-white border-brand-200 hover:bg-brand-200 hover:text-white py-2 rounded-lg bg-white text-brand-200 transition-colors cursor-pointer duration-300"
-          >
-            Entrar
-          </button>
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <button
+              type="submit"
+              className="mt-4 w-full border hover:border-white border-brand-200 hover:bg-brand-200 hover:text-white py-2 rounded-lg bg-white text-brand-200 transition-colors cursor-pointer duration-300"
+            >
+              Entrar
+            </button>
+          )}
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Não tem uma conta?{" "}
-          <Link href="/user/register" className="text-brand-200 hover:underline">
+          <Link
+            href="/user/register"
+            className="text-brand-200 hover:underline"
+          >
             Registrar
           </Link>
         </p>

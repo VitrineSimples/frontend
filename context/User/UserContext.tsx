@@ -5,12 +5,15 @@ import { User, UserContextType } from "./types";
 import api from "@/lib/api";
 import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [users, setUsers] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const router = useRouter();
 
   const { setIsLoading } = useLoading();
   const { user } = useAuth();
@@ -44,6 +47,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       await api.post("api/Users", data);
       await getUsers();
+      toast.success("Conta criada com sucesso!");
+      toast.success("Redirecionando pro login");
+      router.push("/user/login");
     } catch (error) {
       console.error("Erro ao criar usuário:", error);
     } finally {

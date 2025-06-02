@@ -4,13 +4,17 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { iAuthContext, iLoginFormData, iUser } from "./types";
 import api from "@/lib/api";
 import { useLoading } from "../Loading/LoadingContext";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext<iAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<iUser | null>(null);
-  const { isLoading, setIsLoading } = useLoading();
+  const { setIsLoading } = useLoading();
+
+  const router = useRouter();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -32,9 +36,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const { token } = response.data;
       localStorage.setItem("token", token);
       setToken(token);
+      toast.success("Login feito com sucesso!");
       await getUser(token);
-      console.log("Login bem-sucedido");
+      router.push("/markets");
     } catch (err) {
+      toast.error("Falha do login!");
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -58,12 +64,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setToken(null);
     setUser(null);
     localStorage.removeItem("token");
+    toast.success("Logout concluído!");
+    router.push("/");
   };
 
   return (
-    <AuthContext.Provider
-      value={{ token, user, login, logout, isLoading, getUser }}
-    >
+    <AuthContext.Provider value={{ token, user, login, logout, getUser }}>
       {children}
     </AuthContext.Provider>
   );
