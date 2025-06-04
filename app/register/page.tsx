@@ -5,7 +5,11 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/Input";
-import { registerSchema, RegisterFormData, registerSchemaWithoutPassword } from "./schema";
+import {
+  registerSchema,
+  RegisterFormData,
+  registerSchemaWithoutPassword,
+} from "./schema";
 import { useUser } from "@/context/User/UserContext";
 
 export default function Register() {
@@ -22,8 +26,8 @@ export default function Register() {
 
   const onSubmit = async (data: RegisterFormData) => {
     console.log("Registro:", data);
-    const newUser = registerSchemaWithoutPassword.parse(data)
-    await createUser(newUser)
+    const newUser = registerSchemaWithoutPassword.parse(data);
+    await createUser(newUser);
   };
 
   return (
@@ -131,7 +135,7 @@ export default function Register() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Já tem uma conta?{" "}
-          <Link href="/user/login" className="text-brand-200 hover:underline">
+          <Link href="/login" className="text-brand-200 hover:underline">
             Entrar
           </Link>
         </p>

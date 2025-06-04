@@ -4,7 +4,7 @@ import { useShop } from "@/context/Shop/ShopContext";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ShopsPage() {
+export default function ShopsGuren() {
   const { shops } = useShop();
 
   return (

@@ -5,13 +5,13 @@ import Header from "../components/Header/Header";
 import SubHeader from "../components/Header/SubHeader";
 import Carousel from "../components/Carousel/Carousel";
 import Benefits from "../components/Benefits";
-import Sazonal from "../components/Sazonal";
+// import Sazonal from "../../components/Sazonal";
 import Produtos from "../components/Produtos";
 import Footer from "../components/Footer";
 import { useShop } from "@/context/Shop/ShopContext";
 import { use, useEffect } from "react";
 import ShopNotFound from "../components/ShopNotFound";
-import { iSazonal } from "@/context/SeasonalCampaign/type";
+// import { iSazonal } from "@/context/SeasonalCampaign/type";
 
 interface PageProps {
   params: Promise<{ shopName: string }>;

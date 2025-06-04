@@ -9,6 +9,7 @@ interface iAuthContext {
   login: (loginData: iLoginFormData) => Promise<void>;
   getUser: (token: string) => Promise<void>;
   logout: () => void;
+  refreshUser: () => Promise<void>
 }
 
 interface iUser {

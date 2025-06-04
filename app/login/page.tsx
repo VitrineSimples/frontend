@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/Input";
@@ -10,12 +9,10 @@ import { LoginFormData, loginSchema } from "./schema";
 import { useAuth } from "@/context/Auth/AuthContext";
 import { useLoading } from "@/context/Loading/LoadingContext";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
-import { useEffect } from "react";
 
 export default function Login() {
-  const router = useRouter();
   const { isLoading } = useLoading();
-  const { login, user } = useAuth();
+  const { login } = useAuth();
 
   const {
     register,
@@ -26,13 +23,7 @@ export default function Login() {
     mode: "onChange",
   });
 
-  const onSubmit = async (data: LoginFormData) => {
-    await login(data);
-  };
-
-  useEffect(() => {
-    if (user) router.push("/markets");
-  }, [user, router]);
+  const onSubmit = async (data: LoginFormData) => await login(data);
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -95,10 +86,7 @@ export default function Login() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Não tem uma conta?{" "}
-          <Link
-            href="/user/register"
-            className="text-brand-200 hover:underline"
-          >
+          <Link href="/register" className="text-brand-200 hover:underline">
             Registrar
           </Link>
         </p>

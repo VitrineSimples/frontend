@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   IconArrowLeft,
@@ -20,12 +21,12 @@ export function SideBarComponent() {
   const links = [
     {
       label: "Página Principal",
-      href: "#",
+      href: "/guren",
       icon: <IconGrain className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Minha Conta",
-      href: "#",
+      href: "/guren/me",
       icon: <IconUser className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
     },
     {
@@ -51,8 +52,9 @@ export function SideBarComponent() {
       icon: <IconSettings className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
     },
     {
-      label: "Sair",
+      isLogoutButton: true,
       href: "#",
+      label: "Sair",
       icon: (
         <IconArrowLeft className="text-neutral-700 h-5 w-5 flex-shrink-0" />
       ),
@@ -68,7 +70,11 @@ export function SideBarComponent() {
           </>
           <div className="mt-8 flex flex-col gap-2">
             {links.map((link, idx) => (
-              <SideBarLink key={idx} link={link} />
+              <SideBarLink
+                key={idx}
+                link={link}
+                isLogoutButton={link.isLogoutButton}
+              />
             ))}
           </div>
         </div>
@@ -76,7 +82,7 @@ export function SideBarComponent() {
           <SideBarLink
             link={{
               label: "User Example",
-              href: "#",
+              href: "/guren/me",
               icon: (
                 <Image
                   src={imagem}

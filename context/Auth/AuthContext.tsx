@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setToken(token);
       toast.success("Login feito com sucesso!");
       await getUser(token);
-      router.push("/markets");
+      router.push("/guren");
     } catch (err) {
       toast.error("Falha do login!");
       console.error(err);
@@ -60,6 +60,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const refreshUser = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await api.get<iUser>("api/Auth/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUser(response.data);
+      console.log(response.data);
+    } catch (err) {
+      console.error("Erro ao obter usuário", err);
+      logout();
+    }
+  };
+
   const logout = () => {
     setToken(null);
     setUser(null);
@@ -69,7 +83,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout, getUser }}>
+    <AuthContext.Provider
+      value={{ token, user, login, logout, getUser, refreshUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

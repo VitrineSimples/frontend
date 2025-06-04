@@ -49,7 +49,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       await getUsers();
       toast.success("Conta criada com sucesso!");
       toast.success("Redirecionando pro login");
-      router.push("/user/login");
+      router.push("/login");
     } catch (error) {
       console.error("Erro ao criar usuário:", error);
     } finally {
@@ -63,7 +63,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       if (id != user!.id) throw new Error("Sem permissão!");
       await api.put(`api/Users/${id}`, data);
       await getUsers();
+      toast.success("Usuário editado com sucesso!");
     } catch (error) {
+      toast.error("Erro ao editar usuário!");
       console.error(`Erro ao atualizar usuário com id ${id}:`, error);
     } finally {
       setIsLoading(false);
@@ -76,7 +78,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       if (id != user!.id) throw new Error("Sem permissão!");
       await api.delete(`api/Users/${id}`);
       await getUsers();
+      toast.success("Usuário deletado com sucesso!");
     } catch (error) {
+      toast.error("Erro ao deletar usuário!");
       console.error(`Erro ao deletar usuário com id ${id}:`, error);
     } finally {
       setIsLoading(false);

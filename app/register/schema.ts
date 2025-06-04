@@ -16,6 +16,8 @@ export const registerSchema = baseSchema.refine(
   }
 );
 
+
+
 export const registerSchemaWithoutPassword = baseSchema.omit({
   confirmPassword: true,
 });

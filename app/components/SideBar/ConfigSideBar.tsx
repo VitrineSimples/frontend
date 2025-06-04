@@ -4,6 +4,7 @@ import Link, { LinkProps } from "next/link";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
+import { useAuth } from "@/context/Auth/AuthContext";
 
 interface Links {
   label: string;
@@ -156,15 +157,43 @@ export const MobileSideBar = ({
 };
 
 export const SideBarLink = ({
+  isLogoutButton,
   link,
   className,
   ...props
 }: {
+  isLogoutButton?: boolean;
   link: Links;
   className?: string;
   props?: LinkProps;
 }) => {
   const { open, animate } = useSideBar();
+  const { logout } = useAuth();
+
+  if (isLogoutButton) {
+    return (
+      <button
+        className="flex items-center justify-start gap-2 group/sideBar py-2 cursor-pointer"
+        onClick={() => logout()}
+      >
+        {link.icon}
+        <motion.span
+          animate={{
+            display: animate
+              ? open
+                ? "inline-block"
+                : "none"
+              : "inline-block",
+            opacity: animate ? (open ? 1 : 0) : 1,
+          }}
+          className="text-neutral-700 text-sm group-hover/sideBar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        >
+          {link.label}
+        </motion.span>
+      </button>
+    );
+  }
+
   return (
     <Link
       href={link.href}
