@@ -21,13 +21,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (storedToken) {
       try {
         setToken(storedToken);
+        (async () => {
+          await getUser(storedToken);
+        })();
       } catch (err) {
         console.error("Token inválido", err);
         logout();
       }
     }
     setIsLoading(false);
-  }, [setIsLoading]);
+  }, []);
 
   const login = async (loginData: iLoginFormData): Promise<void> => {
     try {
@@ -53,7 +56,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);
-      console.log(response.data);
     } catch (err) {
       console.error("Erro ao obter usuário", err);
       logout();

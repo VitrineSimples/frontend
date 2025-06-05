@@ -2,11 +2,9 @@ import { Input } from "@/app/components/Input";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { RegisterFormData, registerSchema } from "@/app/register/schema";
 import { useAuth } from "@/context/Auth/AuthContext";
-import { iUser } from "@/context/Auth/types";
 import { useLoading } from "@/context/Loading/LoadingContext";
 import { useUser } from "@/context/User/UserContext";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function EditUserModal({
@@ -28,19 +26,6 @@ export default function EditUserModal({
   const { user, refreshUser } = useAuth();
   const { updateUser } = useUser();
 
-  const handleSetData = useCallback(
-    (user: iUser) => {
-      setValue("name", user.name);
-      setValue("email", user.email);
-      setValue("cpf", user.cpf);
-    },
-    [setValue]
-  );
-
-  useEffect(() => {
-    if (user) handleSetData(user);
-  }, [user]);
-
   setValue("name", user!.name);
 
   const onSubmit = async (data: RegisterFormData) => {
@@ -57,6 +42,7 @@ export default function EditUserModal({
       >
         <div>
           <Input
+            value={user?.name}
             label="Nome"
             id="name"
             type="text"
@@ -71,6 +57,7 @@ export default function EditUserModal({
         </div>
         <div>
           <Input
+            value={user?.cpf}
             maxLength={11}
             label="CPF"
             id="cpf"
@@ -87,6 +74,7 @@ export default function EditUserModal({
 
         <div>
           <Input
+            value={user?.email}
             label="Email"
             id="email"
             type="email"

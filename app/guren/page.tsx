@@ -13,7 +13,7 @@ export default function ShopsGuren() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {shops.map((shop) => (
           <Link
-            href={`markets/${shop.name}`}
+            href={`guren/${shop.name}`}
             key={shop.id}
             className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition"
           >

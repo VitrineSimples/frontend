@@ -3,7 +3,7 @@ import { iProduct } from "../Product/type";
 type Shop = {
   id: string;
   name: string;
-  ownerId: string
+  ownerId: string;
   products: iProduct[];
 };
 
@@ -12,13 +12,14 @@ type ShopContextType = {
   selectedShop: Shop | null;
   getShops: () => Promise<void>;
   getShopByName: (name: string) => Promise<void>;
-  createShop: (data: Omit<Shop, "id" | "productIds">) => Promise<void>;
+  createShop: (data: string) => Promise<void>;
   updateShop: (
     id: string,
-    data: Omit<Shop, "id" | "productIds">
+    data: string
   ) => Promise<void>;
   deleteShop: (id: string) => Promise<void>;
   clearSelectedShop: () => void;
+  getShopByUserId: (userId: string) => Promise<void>;
 };
 
 export type { Shop, ShopContextType };

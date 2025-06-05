@@ -11,6 +11,7 @@ import {
 import { Shop, ShopContextType } from "./types";
 import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
+import { toast } from "react-toastify";
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
@@ -56,29 +57,35 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const createShop = async (data: Omit<Shop, "id" | "productIds">) => {
+  const createShop = async (data: string) => {
     try {
       setIsLoading(true);
-      await api.post("api/Shops", { ...data, userId: user!.id });
+      await api.post("api/Shops", {
+        userId: user!.id,
+        products: [],
+        name: data,
+      });
       await getShops();
+      toast.success("Loja criada com sucesso!");
     } catch (error) {
       console.error("Erro ao criar loja:", error);
+      toast.error("Erro ao criar loja. Tente novamente.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const updateShop = async (
-    id: string,
-    data: Omit<Shop, "id" | "productIds">
-  ) => {
+  const updateShop = async (id: string, data: string) => {
     try {
       setIsLoading(true);
       if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
-      await api.put(`api/Shops/${id}`, { ...data, userId: user!.id });
+      await api.put(`api/Shops/${id}`, { userId: user!.id, name: data });
+      toast.success("Loja editada com sucesso!");
       await getShops();
+      await getShopByUserId(user!.id);
     } catch (error) {
       console.error(`Erro ao atualizar loja com id ${id}:`, error);
+      toast.error("Erro ao editar loja. Tente novamente.");
     } finally {
       setIsLoading(false);
     }
@@ -90,8 +97,22 @@ export function ShopProvider({ children }: { children: ReactNode }) {
       if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
       await api.delete(`api/Shops/${id}`);
       await getShops();
+      setSelectedShop(null);
+      toast.success("Loja deletada com sucesso!");
     } catch (error) {
       console.error(`Erro ao deletar loja com id ${id}:`, error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getShopByUserId = async (userId: string) => {
+    try {
+      setIsLoading(true);
+      const response = await api.get(`api/Shops/user/${userId}`);
+      setSelectedShop(response.data);
+    } catch (error) {
+      console.error(`Erro ao buscar loja do usuário com id ${userId}:`, error);
     } finally {
       setIsLoading(false);
     }
@@ -112,6 +133,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
         updateShop,
         deleteShop,
         clearSelectedShop,
+        getShopByUserId,
       }}
     >
       {children}

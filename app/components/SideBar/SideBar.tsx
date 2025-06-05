@@ -16,11 +16,12 @@ import Image from "next/image";
 import imagem from "@/public/userStockImage.jpg";
 import logo from "@/public/logo.svg";
 import { SideBarBody, SideBarLink, SideBar } from "./ConfigSideBar";
+import { useAuth } from "@/context/Auth/AuthContext";
 
 export function SideBarComponent() {
   const links = [
     {
-      label: "Página Principal",
+      label: "Lista de Lojas",
       href: "/guren",
       icon: <IconGrain className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
     },
@@ -61,6 +62,9 @@ export function SideBarComponent() {
     },
   ];
   const [open, setOpen] = useState(false);
+
+  const { user } = useAuth();
+
   return (
     <SideBar open={open} setOpen={setOpen} animate={true}>
       <SideBarBody className="justify-between gap-10">
@@ -81,7 +85,7 @@ export function SideBarComponent() {
         <div>
           <SideBarLink
             link={{
-              label: "User Example",
+              label: user?.name || "Usuário",
               href: "/guren/me",
               icon: (
                 <Image

@@ -16,7 +16,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   const { setIsLoading } = useLoading();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const getUsers = async () => {
     try {
@@ -78,6 +78,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       if (id != user!.id) throw new Error("Sem permissão!");
       await api.delete(`api/Users/${id}`);
       await getUsers();
+      logout();
+      clearSelectedUser();
+      // router.push("/login");
       toast.success("Usuário deletado com sucesso!");
     } catch (error) {
       toast.error("Erro ao deletar usuário!");
