@@ -17,7 +17,7 @@ export default function ProductDetails({ params }: PageProps) {
       await getProductById(productId);
     };
     fetchProduct();
-  }, [productId]); // adicionado para evitar chamadas múltiplas
+  }, [productId]);
 
   if (!selectedProduct) {
     return (
