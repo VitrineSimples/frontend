@@ -20,18 +20,13 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
 
   const { setIsLoading } = useLoading();
-  const { user } = useAuth();
+  const { user, refreshUser } = useAuth();
 
   useEffect(() => {
     (async () => {
       await getShops();
     })();
   }, []);
-
-  const isOwnerShop = async (shopName: string): Promise<boolean> => {
-    await getShopByName(shopName);
-    return selectedShop?.ownerId === user?.id || false;
-  };
 
   const getShops = async () => {
     try {
@@ -66,6 +61,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
         name: data,
       });
       await getShops();
+      await refreshUser();
       toast.success("Loja criada com sucesso!");
     } catch (error) {
       console.error("Erro ao criar loja:", error);
@@ -78,11 +74,10 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const updateShop = async (id: string, data: string) => {
     try {
       setIsLoading(true);
-      if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
       await api.put(`api/Shops/${id}`, { userId: user!.id, name: data });
       toast.success("Loja editada com sucesso!");
       await getShops();
-      await getShopByUserId(user!.id);
+      await refreshUser();
     } catch (error) {
       console.error(`Erro ao atualizar loja com id ${id}:`, error);
       toast.error("Erro ao editar loja. Tente novamente.");
@@ -94,10 +89,9 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const deleteShop = async (id: string) => {
     try {
       setIsLoading(true);
-      if (!(await isOwnerShop(id))) throw new Error("Sem permissão!");
       await api.delete(`api/Shops/${id}`);
       await getShops();
-      setSelectedShop(null);
+      await refreshUser();
       toast.success("Loja deletada com sucesso!");
     } catch (error) {
       console.error(`Erro ao deletar loja com id ${id}:`, error);

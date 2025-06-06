@@ -1,5 +1,5 @@
 import { iSazonal } from "@/context/SeasonalCampaign/type";
-import { Heart, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 export default function Sazonal({
@@ -38,12 +38,6 @@ export default function Sazonal({
                 height={300}
                 className="w-full h-56 object-cover rounded-xl"
               />
-              <button
-                title="Favoritar"
-                className="absolute cursor-pointer top-2 right-2 bg-gray-100/80 backdrop-blur-md p-2 rounded-full shadow hover:bg-red-100 transition"
-              >
-                <Heart className="w-5 h-5 text-contrast" />
-              </button>
             </div>
             <div className="text-center px-2">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-600">

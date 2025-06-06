@@ -7,6 +7,7 @@ import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
@@ -45,12 +46,19 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const createUser = async (data: Omit<User, "id">) => {
     try {
       setIsLoading(true);
-      await api.post("api/Users", data);
+      const res = await api.post("api/Users", data);
+      console.log(res);
       await getUsers();
       toast.success("Conta criada com sucesso!");
       toast.success("Redirecionando pro login");
       router.push("/login");
     } catch (error) {
+      const err = error as AxiosError;
+      if (err.response?.status === 409) {
+        toast.error("Usuário já cadastrado!");
+      } else {
+        toast.error("Erro ao criar usuário!");
+      }
       console.error("Erro ao criar usuário:", error);
     } finally {
       setIsLoading(false);
@@ -80,7 +88,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
       await getUsers();
       logout();
       clearSelectedUser();
-      // router.push("/login");
       toast.success("Usuário deletado com sucesso!");
     } catch (error) {
       toast.error("Erro ao deletar usuário!");

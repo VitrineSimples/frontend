@@ -26,6 +26,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         })();
       } catch (err) {
         console.error("Token inválido", err);
+        toast.error("Sessão expirada, por favor faça login novamente.");
+        setToken(null);
+        setUser(null);
         logout();
       }
     }

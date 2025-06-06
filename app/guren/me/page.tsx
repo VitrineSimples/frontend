@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import EditUserModal from "./modals/user/EditUserModal";
 import DeleteUserModal from "./modals/user/DeleteUserModal";
 import CreateShopModal from "./modals/shop/CreateShopModal";
-import { useShop } from "@/context/Shop/ShopContext";
 import EditShopModal from "./modals/shop/EditShopModal";
 import DeleteShopModal from "./modals/shop/DeleteShopModa";
 
@@ -31,12 +30,16 @@ export default function User() {
 
   const router = useRouter();
   const { user } = useAuth();
-  const { getShopByUserId, selectedShop } = useShop();
 
-  if (!selectedShop) {
-    (async () => {
-      if (user?.id) await getShopByUserId(user.id);
-    })();
+  if (!user) {
+    return (
+      <div className="container mx-auto px-2 py-4">
+        <h1 className="text-2xl text-gray-600">Usuário não encontrado</h1>
+        <p className="text-sm text-gray-400">
+          Por favor, faça login para acessar esta página.
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -86,7 +89,7 @@ export default function User() {
             Aqui você pode ver gerir sua loja, e se não tiver uma, criar!
           </p>
           <div className="flex flex-col md:flex-row gap-4 mt-4">
-            {!selectedShop && (
+            {!user?.shop && (
               <button
                 onClick={() => toggleCreateShopModal()}
                 className="h-fit w-fit mx-auto md:mx-0 justify-center md:justify-baseline uppercase flex items-center gap-2 text-brand-200 hover:text-white hover:bg-brand-200 border border-brand-200 p-2 rounded-md cursor-pointer transition-all duration-300"
@@ -94,10 +97,10 @@ export default function User() {
                 Criar Loja
               </button>
             )}
-            {selectedShop && (
+            {user?.shop && (
               <>
                 <button
-                  onClick={() => router.push(`/guren/${selectedShop?.name}`)}
+                  onClick={() => router.push(`/guren/${user.shop.name}`)}
                   className="h-fit w-fit mx-auto md:mx-0 justify-center md:justify-baseline uppercase flex items-center gap-2 text-brand-200 hover:text-white hover:bg-brand-200 border border-brand-200 p-2 rounded-md cursor-pointer transition-all duration-300"
                 >
                   Minha Loja
@@ -139,20 +142,20 @@ export default function User() {
           <CreateShopModal toggleModal={toggleCreateShopModal} />
         </Modal>
       )}
-      {editShopModal && selectedShop && (
+      {editShopModal && user.shop && (
         <Modal toggleModal={toggleEditShopModal}>
           <EditShopModal
             toggleModal={toggleEditShopModal}
-            currentName={selectedShop?.name}
-            currentId={selectedShop.id}
+            currentName={user.shop.name}
+            currentId={user.shop.id}
           />
         </Modal>
       )}
-      {deleteShopModal && selectedShop && (
+      {deleteShopModal && user.shop && (
         <Modal toggleModal={toggleDeleteShopModal}>
           <DeleteShopModal
             toggleModal={toggleDeleteShopModal}
-            currentId={selectedShop.id}
+            currentId={user.shop.id}
           />
         </Modal>
       )}

@@ -1,11 +1,23 @@
 "use client";
 
+import { useAuth } from "@/context/Auth/AuthContext";
 import { useShop } from "@/context/Shop/ShopContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function ShopsGuren() {
-  const { shops } = useShop();
+  const { shops, getShops } = useShop();
+  const { refreshUser } = useAuth();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      await refreshUser();
+    };
+    fetchUser();
+    const fetchShops = async () => await getShops();
+    fetchShops();
+  }, []);
 
   return (
     <main className="p-8">

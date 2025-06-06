@@ -4,40 +4,10 @@ import { Mail, MessageCircle, Phone } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-contrast text-white py-10 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div>
           <h3 className="text-2xl font-bold mb-4">ALLter</h3>
           <p className="text-sm">Moda para todos, com estilo e conforto.</p>
-        </div>
-        <div>
-          <h4 className="font-semibold mb-3">Categorias</h4>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a href="#" className="hover:underline">
-                Moda Feminina
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Moda Masculina
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Moda Infantil
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Calçados
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Fitness
-              </a>
-            </li>
-          </ul>
         </div>
         <div>
           <h4 className="font-semibold mb-3">Atendimento</h4>
@@ -82,7 +52,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-10 text-center text-sm text-white/80 border-t border-white/20 pt-4">
-        © {new Date().getFullYear()} ALLter. Todos os direitos reservados. Desenvolvimento GUREN
+        © {new Date().getFullYear()} ALLter. Todos os direitos reservados.
+        Desenvolvimento GUREN
       </div>
     </footer>
   );

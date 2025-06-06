@@ -1,3 +1,5 @@
+import { Shop } from "../Shop/types";
+
 interface iLoginFormData {
   email: string;
   password: string;
@@ -17,6 +19,7 @@ interface iUser {
   name: string;
   email: string;
   cpf: string;
+  shop: Shop
 }
 
 export type { iAuthContext, iUser, iLoginFormData };
