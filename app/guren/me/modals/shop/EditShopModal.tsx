@@ -26,17 +26,17 @@ export default function EditShopModal({
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<EditShopFormData>({
     resolver: zodResolver(editShopSchema),
     mode: "onChange",
+    defaultValues: {
+      name: currentName,
+    },
   });
 
   const { isLoading } = useLoading();
   const { updateShop } = useShop();
-
-  setValue("name", currentName);
 
   const onSubmit = async (data: EditShopFormData) => {
     await updateShop(currentId, data.name);

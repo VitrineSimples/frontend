@@ -31,7 +31,7 @@ export default function MarketPage({ params }: PageProps) {
     fetch();
   }, [shopName]);
 
-  if (!selectedShop) return <ShopNotFound />;
+  if (!selectedShop) return <ShopNotFound />
 
   return (
     <>

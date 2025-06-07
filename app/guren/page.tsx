@@ -5,6 +5,7 @@ import { useShop } from "@/context/Shop/ShopContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import NoOneShop from "./components/NoOneShop";
 
 export default function ShopsGuren() {
   const { shops, getShops } = useShop();
@@ -18,6 +19,8 @@ export default function ShopsGuren() {
     const fetchShops = async () => await getShops();
     fetchShops();
   }, []);
+
+  if (shops.length === 0) return <NoOneShop />;
 
   return (
     <main className="p-8">

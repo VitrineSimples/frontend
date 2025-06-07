@@ -1,16 +1,19 @@
 "use client";
 
+import { useAuth } from "@/context/Auth/AuthContext";
 import { useProduct } from "@/context/Product/ProductContext";
 import Image from "next/image";
+import Link from "next/link";
 import { use, useEffect } from "react";
 
 interface PageProps {
-  params: Promise<{ productId: string }>;
+  params: Promise<{ productId: string; shopName: string }>;
 }
 
 export default function ProductDetails({ params }: PageProps) {
-  const { productId } = use(params);
+  const { productId, shopName } = use(params);
   const { getProductById, selectedProduct } = useProduct();
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -19,7 +22,7 @@ export default function ProductDetails({ params }: PageProps) {
     fetchProduct();
   }, [productId]);
 
-  if (!selectedProduct) {
+  if (!selectedProduct || !user) {
     return (
       <div className="text-center text-gray-500 mt-10">
         Carregando produto...
@@ -28,7 +31,13 @@ export default function ProductDetails({ params }: PageProps) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-xl mt-10 border border-gray-100">
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-xl my-10 border border-gray-100 relative">
+      <Link
+        href={`/guren/${shopName}`}
+        className="text-white hover:text-gray-200 text-lg border border-contrast p-2 rounded-md backdrop-blur-sm bg-white/30 mb-4 inline-block absolute top-12 left-12"
+      >
+        Voltar
+      </Link>
       <Image
         src={selectedProduct.imageURL}
         alt={selectedProduct.name}
@@ -56,6 +65,24 @@ export default function ProductDetails({ params }: PageProps) {
             {selectedProduct.shopId}
           </span>
         </div>
+        {selectedProduct.shopId !== user.shop.id && (
+          <div className="flex gap-4 pt-4">
+            <button
+              onClick={() =>
+                console.log("Adicionar ao carrinho", selectedProduct)
+              }
+              className="px-6 py-3 bg-contrast/90 hover:bg-contrast cursor-pointer text-white font-semibold rounded-lg shadow-md transition"
+            >
+              Adicionar ao Carrinho
+            </button>
+            <button
+              onClick={() => console.log("Comprar agora", selectedProduct)}
+              className="px-6 py-3 bg-green-600 hover:bg-green-700 cursor-pointer text-white font-semibold rounded-lg shadow-md transition"
+            >
+              Comprar
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
