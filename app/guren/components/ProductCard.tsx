@@ -6,11 +6,12 @@ import { useState } from "react";
 import EditProductModal from "../[shopName]/modals/EditProduct";
 import DeleteProductModal from "../[shopName]/modals/DeleteProduct";
 import Link from "next/link";
+import { useCart } from "@/context/Cart/CartContext";
 
 export default function ProductCard({
   product,
   isOwner,
-  shopName
+  shopName,
 }: {
   product: iProduct;
   isOwner: boolean;
@@ -22,6 +23,8 @@ export default function ProductCard({
   const [deleteProductModal, setDeleteProductModal] = useState(false);
   const toggleDeleteProductModal = () =>
     setDeleteProductModal(!deleteProductModal);
+
+  const { addToCart } = useCart();
 
   return (
     <>
@@ -69,6 +72,7 @@ export default function ProductCard({
           {!isOwner && (
             <button
               title="Adicionar ao carrinho"
+              onClick={() => addToCart({ productId: product.id, quantity: 1 })}
               className="bg-gray-100 cursor-pointer hover:bg-gray-200 p-2 rounded-full transition"
             >
               <ShoppingCart className="w-5 h-5 text-gray-600 " />
@@ -76,7 +80,10 @@ export default function ProductCard({
           )}
         </div>
         <div className="flex flex-col sm:flex-row gap-2 w-full mt-2">
-          <Link href={`${shopName}/${product.id}`} className="flex-1 text-center cursor-pointer bg-gray-200 text-brand-200 py-2 rounded-xl hover:bg-gray-300 hover:text-brand-100 transition font-medium text-sm sm:text-base">
+          <Link
+            href={`${shopName}/${product.id}`}
+            className="flex-1 text-center cursor-pointer bg-gray-200 text-brand-200 py-2 rounded-xl hover:bg-gray-300 hover:text-brand-100 transition font-medium text-sm sm:text-base"
+          >
             Detalhes
           </Link>
           {!isOwner && (

@@ -1,8 +1,11 @@
+"use client";
+import { useCart } from "@/context/Cart/CartContext";
 import { IconBuildingStore } from "@tabler/icons-react";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 const Header = ({ shopName }: { shopName: string }) => {
+  const { cart } = useCart();
   return (
     <div
       id="header"
@@ -21,9 +24,12 @@ const Header = ({ shopName }: { shopName: string }) => {
           id="header-buttons"
           className="order-2 md:order-0 flex gap-2 text-contrast"
         >
-          <a href="#">
+          <Link href="/guren/me/cart" className="relative">
             <ShoppingCart className="w-7 h-7 md:w-8 md:h-8" />
-          </a>
+            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-contrast text-xs text-white">
+              {cart?.items.length || 0}
+            </span>
+          </Link>
         </div>
       </div>
     </div>

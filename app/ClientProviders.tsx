@@ -8,6 +8,7 @@ import { LoadingProvider } from "@/context/Loading/LoadingContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ProductProvider } from "@/context/Product/ProductContext";
+import { CartProvider } from "@/context/Cart/CartContext";
 
 export function ClientProviders({ children }: { children: ReactNode }) {
   return (
@@ -17,7 +18,9 @@ export function ClientProviders({ children }: { children: ReactNode }) {
         <AuthProvider>
           <UserProvider>
             <ShopProvider>
-              <ProductProvider>{children}</ProductProvider>
+              <ProductProvider>
+                <CartProvider>{children}</CartProvider>
+              </ProductProvider>
             </ShopProvider>
           </UserProvider>
         </AuthProvider>
