@@ -9,17 +9,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ProductProvider } from "@/context/Product/ProductContext";
 import { CartProvider } from "@/context/Cart/CartContext";
+import { OrderProvider } from "@/context/Order/OrderContext";
 
 export function ClientProviders({ children }: { children: ReactNode }) {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="bottom-right" />
       <LoadingProvider>
         <AuthProvider>
           <UserProvider>
             <ShopProvider>
               <ProductProvider>
-                <CartProvider>{children}</CartProvider>
+                <CartProvider>
+                  <OrderProvider>{children}</OrderProvider>
+                </CartProvider>
               </ProductProvider>
             </ShopProvider>
           </UserProvider>

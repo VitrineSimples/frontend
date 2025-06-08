@@ -4,6 +4,7 @@ interface CartItem {
   productName: string;
   productPrice: number;
   productImage: string;
+  shopId: string;
   quantity: number;
 }
 
@@ -21,8 +22,9 @@ interface AddCartItem {
 interface iCartContext {
   cart: Cart | null;
   getCart: () => Promise<void>;
-  addToCart: (item: AddCartItem) => Promise<void>;
+  addToCart: (item: AddCartItem, currentShopId: string) => Promise<void>;
   removeFromCart: (productId: string) => Promise<void>;
+  clearCart: () => void
 }
 
 export type { CartItem, Cart, AddCartItem, iCartContext };

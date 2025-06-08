@@ -1,103 +1,83 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { iAuthContext, iLoginFormData, iUser } from "./types";
 import api from "@/lib/api";
-import { useLoading } from "../Loading/LoadingContext";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useAuth } from "../Auth/AuthContext";
+import { useLoading } from "../Loading/LoadingContext";
+import { OrderContextType, Order } from "./types";
+import { useCart } from "../Cart/CartContext";
 
-const AuthContext = createContext<iAuthContext | undefined>(undefined);
+const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<iUser | null>(null);
+export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const { user, token } = useAuth();
   const { setIsLoading } = useLoading();
+  const { getCart, clearCart } = useCart();
 
-  const router = useRouter();
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      try {
-        setToken(storedToken);
-        (async () => {
-          await getUser(storedToken);
-        })();
-      } catch (err) {
-        console.error("Token inválido", err);
-        toast.error("Sessão expirada, por favor faça login novamente.");
-        setToken(null);
-        setUser(null);
-        logout();
-      }
-    }
-    setIsLoading(false);
-  }, []);
-
-  const login = async (loginData: iLoginFormData): Promise<void> => {
+  const fetchOrders = async () => {
+    if (!user) return;
     try {
       setIsLoading(true);
-      const response = await api.post("api/Auth/signIn", loginData);
-      const { token } = response.data;
-      localStorage.setItem("token", token);
-      setToken(token);
-      toast.success("Login feito com sucesso!");
-      await getUser(token);
-      router.push("/guren");
-    } catch (err) {
-      toast.error("Falha do login!");
-      console.error(err);
+      const response = await api.get<Order[]>("api/Orders/user");
+      setOrders(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar pedidos:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const getUser = async (token: string): Promise<void> => {
+  const createOrder = async (productIds: string[]) => {
     try {
-      const response = await api.get<iUser>("api/Auth/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUser(response.data);
-    } catch (err) {
-      console.error("Erro ao obter usuário", err);
-      logout();
+      setIsLoading(true);
+      await api.post("api/Orders", { productIds });
+      toast.success("Pedido criado com sucesso!");
+      await fetchOrders();
+    } catch (error) {
+      console.error("Erro ao criar pedido:", error);
+      toast.error("Erro ao criar pedido.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const refreshUser = async (): Promise<void> => {
-    const token = localStorage.getItem("token");
+  const createOrderFromCart = async () => {
     try {
-      const response = await api.get<iUser>("api/Auth/me", {
-        headers: { Authorization: `Bearer ${token}` },
+      setIsLoading(true);
+      await api.post("api/Orders/fromcart", null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      setUser(response.data);
-      console.log(response.data);
-    } catch (err) {
-      console.error("Erro ao obter usuário", err);
-      logout();
+      toast.success("Pedido criado a partir do carrinho!");
+      await fetchOrders();
+      clearCart();
+      await getCart();
+    } catch (error) {
+      console.error("Erro ao criar pedido do carrinho:", error);
+      toast.error("Erro ao criar pedido do carrinho.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("token");
-    toast.success("Logout concluído!");
-    router.push("/");
-  };
+  useEffect(() => {
+    if (user) fetchOrders();
+  }, [user]);
 
   return (
-    <AuthContext.Provider
-      value={{ token, user, login, logout, getUser, refreshUser }}
+    <OrderContext.Provider
+      value={{ orders, fetchOrders, createOrder, createOrderFromCart }}
     >
       {children}
-    </AuthContext.Provider>
+    </OrderContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within AuthProvider");
+export const useOrder = () => {
+  const context = useContext(OrderContext);
+  if (!context) throw new Error("useOrders must be used within OrderProvider");
   return context;
 };

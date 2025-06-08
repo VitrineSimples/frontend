@@ -7,6 +7,7 @@ import EditProductModal from "../[shopName]/modals/EditProduct";
 import DeleteProductModal from "../[shopName]/modals/DeleteProduct";
 import Link from "next/link";
 import { useCart } from "@/context/Cart/CartContext";
+import { useOrder } from "@/context/Order/OrderContext";
 
 export default function ProductCard({
   product,
@@ -25,6 +26,11 @@ export default function ProductCard({
     setDeleteProductModal(!deleteProductModal);
 
   const { addToCart } = useCart();
+  const { createOrderFromCart } = useOrder();
+  const addToCartAndFinishOrder = async () => {
+    await addToCart({ productId: product.id, quantity: 1 }, product.shopId);
+    await createOrderFromCart();
+  };
 
   return (
     <>
@@ -72,7 +78,12 @@ export default function ProductCard({
           {!isOwner && (
             <button
               title="Adicionar ao carrinho"
-              onClick={() => addToCart({ productId: product.id, quantity: 1 })}
+              onClick={() =>
+                addToCart(
+                  { productId: product.id, quantity: 1 },
+                  product.shopId
+                )
+              }
               className="bg-gray-100 cursor-pointer hover:bg-gray-200 p-2 rounded-full transition"
             >
               <ShoppingCart className="w-5 h-5 text-gray-600 " />
@@ -87,7 +98,10 @@ export default function ProductCard({
             Detalhes
           </Link>
           {!isOwner && (
-            <button className="flex-1 cursor-pointer bg-contrast/95 text-gray-100 py-2 rounded-xl hover:bg-contrast transition font-medium text-sm sm:text-base">
+            <button
+              onClick={() => addToCartAndFinishOrder()}
+              className="flex-1 cursor-pointer bg-contrast/95 text-gray-100 py-2 rounded-xl hover:bg-contrast transition font-medium text-sm sm:text-base"
+            >
               Comprar
             </button>
           )}

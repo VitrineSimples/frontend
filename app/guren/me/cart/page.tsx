@@ -2,17 +2,19 @@
 
 import { useCart } from "@/context/Cart/CartContext";
 import { useLoading } from "@/context/Loading/LoadingContext";
+import { useOrder } from "@/context/Order/OrderContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
 export default function CartPage() {
   const { isLoading } = useLoading();
-  const { cart } = useCart();
+  const { cart, getCart, removeFromCart } = useCart();
+  const { createOrderFromCart } = useOrder();
 
   useEffect(() => {
     const fetchCart = async () => {
-      console.log("Fetching cart...");
+      await getCart();
     };
     fetchCart();
   }, []);
@@ -41,8 +43,11 @@ export default function CartPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href={"/guren"} className="text-contrast/90 hover:text-contrast transition text-lg">
-        Voltar
+        <Link
+          href={"/guren"}
+          className="text-contrast/90 hover:text-contrast transition text-lg"
+        >
+          Voltar
         </Link>
         <p className="text-gray-700">{cart.items.length} item(s) no carrinho</p>
       </div>
@@ -79,7 +84,7 @@ export default function CartPage() {
                 {item.quantity}
               </span>
               <button
-                onClick={() => alert("Remover item")}
+                onClick={async () => await removeFromCart(item.productId)}
                 className="text-contrast/90 hover:text-contrast cursor-pointer transition text-xl"
                 title="Remover item"
               >
@@ -95,7 +100,7 @@ export default function CartPage() {
           Total: R$ {total.toFixed(2).replace(".", ",")}
         </p>
         <button
-          onClick={() => alert("Compra finalizada!")}
+          onClick={async () => await createOrderFromCart()}
           className="bg-contrast/90 text-white px-6 py-3 rounded hover:bg-contrast transition cursor-pointer"
         >
           Finalizar Compra

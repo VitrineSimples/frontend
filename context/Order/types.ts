@@ -1,25 +1,22 @@
-import { Shop } from "../Shop/types";
-
-interface iLoginFormData {
-  email: string;
-  password: string;
+interface OrderItem {
+  productId: string;
+  productName: string;
+  productPrice: number;
+  quantity: number;
 }
 
-interface iAuthContext {
-  token: string | null;
-  user: iUser | null;
-  login: (loginData: iLoginFormData) => Promise<void>;
-  getUser: (token: string) => Promise<void>;
-  logout: () => void;
-  refreshUser: () => Promise<void>
-}
-
-interface iUser {
+interface Order {
   id: string;
-  name: string;
-  email: string;
-  cpf: string;
-  shop: Shop
+  createdAt: string;
+  total: number;
+  items: OrderItem[];
 }
 
-export type { iAuthContext, iUser, iLoginFormData };
+interface OrderContextType {
+  orders: Order[];
+  fetchOrders: () => Promise<void>;
+  createOrder: (productIds: string[]) => Promise<void>;
+  createOrderFromCart: () => Promise<void>;
+}
+
+export type { OrderItem, Order, OrderContextType };

@@ -1,6 +1,8 @@
 "use client";
 
 import { useAuth } from "@/context/Auth/AuthContext";
+import { useCart } from "@/context/Cart/CartContext";
+import { useOrder } from "@/context/Order/OrderContext";
 import { useProduct } from "@/context/Product/ProductContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +16,16 @@ export default function ProductDetails({ params }: PageProps) {
   const { productId, shopName } = use(params);
   const { getProductById, selectedProduct } = useProduct();
   const { user } = useAuth();
+  const { addToCart } = useCart();
+  const { createOrderFromCart } = useOrder();
+
+  const addToCartAndFinishOrder = async () => {
+    await addToCart(
+      { productId: selectedProduct!.id, quantity: 1 },
+      selectedProduct!.shopId
+    );
+    await createOrderFromCart();
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -65,24 +77,28 @@ export default function ProductDetails({ params }: PageProps) {
             {selectedProduct.shopId}
           </span>
         </div>
-        {selectedProduct.shopId !== user.shop.id && (
-          <div className="flex gap-4 pt-4">
-            <button
-              onClick={() =>
-                console.log("Adicionar ao carrinho", selectedProduct)
-              }
-              className="px-6 py-3 bg-contrast/90 hover:bg-contrast cursor-pointer text-white font-semibold rounded-lg shadow-md transition"
-            >
-              Adicionar ao Carrinho
-            </button>
-            <button
-              onClick={() => console.log("Comprar agora", selectedProduct)}
-              className="px-6 py-3 bg-green-600 hover:bg-green-700 cursor-pointer text-white font-semibold rounded-lg shadow-md transition"
-            >
-              Comprar
-            </button>
-          </div>
-        )}
+        {(user.shop && selectedProduct.shopId !== user.shop.id) ||
+          (user.shop === null && (
+            <div className="flex gap-4 pt-4">
+              <button
+                onClick={() =>
+                  addToCart(
+                    { productId: selectedProduct.id, quantity: 1 },
+                    selectedProduct.shopId
+                  )
+                }
+                className="px-6 py-3 bg-contrast/90 hover:bg-contrast cursor-pointer text-white font-semibold rounded-lg shadow-md transition"
+              >
+                Adicionar ao Carrinho
+              </button>
+              <button
+                onClick={() => addToCartAndFinishOrder()}
+                className="px-6 py-3 bg-green-600 hover:bg-green-700 cursor-pointer text-white font-semibold rounded-lg shadow-md transition"
+              >
+                Comprar
+              </button>
+            </div>
+          ))}
       </div>
     </div>
   );

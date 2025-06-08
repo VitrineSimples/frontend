@@ -3,9 +3,18 @@ import { useCart } from "@/context/Cart/CartContext";
 import { IconBuildingStore } from "@tabler/icons-react";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Header = ({ shopName }: { shopName: string }) => {
-  const { cart } = useCart();
+  const { cart, getCart } = useCart();
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      await getCart();
+    };
+    fetchCart();
+  }, []);
+
   return (
     <div
       id="header"

@@ -27,36 +27,58 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const addToCart = async (item: AddCartItem) => {
+  const addToCart = async (item: AddCartItem, currentShopId: string) => {
     if (!user) return;
+    console.log(currentShopId);
+
+    if (cart && cart.items.length > 0) {
+      const itemShopId = cart.items[0].shopId;
+      if (itemShopId !== currentShopId) {
+        toast.error(
+          "Você só pode adicionar produtos da mesma loja ao carrinho."
+        );
+        return;
+      }
+    }
+
     try {
+      setIsLoading(true);
       await api.post(`api/Cart/${user.id}/add`, item);
       toast.success("Produto adicionado ao carrinho!");
       await getCart();
     } catch (error) {
       console.error("Erro ao adicionar produto:", error);
       toast.error("Erro ao adicionar produto ao carrinho.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const removeFromCart = async (productId: string) => {
     if (!user) return;
     try {
+      setIsLoading(true);
       await api.delete(`api/Cart/${user.id}/remove/${productId}`);
       toast.success("Produto removido do carrinho.");
       await getCart();
     } catch (error) {
       console.error("Erro ao remover produto:", error);
       toast.error("Erro ao remover produto do carrinho.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const clearCart = () => {
+    setCart(null);
+  }
+
   useEffect(() => {
     if (user) getCart();
-  }, [user]);
+  }, []);
 
   return (
-    <CartContext.Provider value={{ cart, getCart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, getCart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
