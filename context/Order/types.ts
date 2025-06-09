@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { iProduct } from "../Product/type";
 import { iUser } from "../User/types";
 
@@ -25,6 +26,7 @@ interface OrderContextType {
   fetchOrders: () => Promise<void>;
   createOrder: (productIds: string[]) => Promise<void>;
   createOrderFromCart: (shopWhatsAppNumber: string) => Promise<void>;
+  setCurrentOrder: Dispatch<SetStateAction<Order | null>>;
 }
 
 export type { OrderItem, Order, OrderContextType };
