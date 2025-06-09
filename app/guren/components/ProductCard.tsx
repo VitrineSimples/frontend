@@ -46,7 +46,7 @@ export default function ProductCard({
             alt={product.name}
             width={400}
             height={300}
-            className="w-full h-56 object-cover rounded-xl"
+            className="w-full h-56 object-contain bg-white rounded-xl"
           />
           {isOwner && (
             <div className="absolute top-2 right-2 flex gap-2">

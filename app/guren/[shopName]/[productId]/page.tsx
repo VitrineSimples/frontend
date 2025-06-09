@@ -46,7 +46,7 @@ export default function ProductDetails({ params }: PageProps) {
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-xl my-10 border border-gray-100 relative">
       <Link
         href={`/guren/${shopName}`}
-        className="text-white hover:text-gray-200 text-lg border border-contrast p-2 rounded-md backdrop-blur-sm bg-white/30 mb-4 inline-block absolute top-12 left-12"
+        className="text-white bg-contrast hover:text-gray-200 text-lg border border-contrast p-2 rounded-md backdrop-blur-sm mb-4 inline-block absolute top-12 left-12"
       >
         Voltar
       </Link>
@@ -55,7 +55,7 @@ export default function ProductDetails({ params }: PageProps) {
         alt={selectedProduct.name}
         width={700}
         height={400}
-        className="w-full h-80 object-cover rounded-lg shadow-md mb-6"
+        className="w-full h-80 object-contain rounded-lg shadow-md mb-6"
       />
 
       <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function ProductDetails({ params }: PageProps) {
 
         <div className="text-sm text-gray-500">
           Loja vinculada:{" "}
-          <span className="font-medium text-contrast">{shopName}</span>
+          <span className="font-medium text-contrast">{decodeURIComponent(shopName)}</span>
         </div>
         {(user.shop && selectedProduct.shopId !== user.shop.id) ||
           (user.shop === null && (
