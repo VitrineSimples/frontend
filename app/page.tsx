@@ -72,7 +72,7 @@ export default function Home() {
             words={["confiável", "inteligente", "eficiente", "inovador"]}
           />
           <Link
-            href="/register"
+            href="/login"
             className="bg-brand-200 text-white px-6 py-3 rounded-md cursor-pointer w-fit hover:bg-brand-100 transition duration-300"
             data-aos="fade-down"
             data-aos-delay="1550"

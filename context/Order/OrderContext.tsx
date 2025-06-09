@@ -65,7 +65,6 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
         data.user.name,
         data.id
       )}`;
-      console.log(createWhatsAppMessage(data.user.name, data.id));
     } catch (error) {
       console.error("Erro ao criar pedido do carrinho:", error);
       toast.error("Erro ao criar pedido do carrinho.");

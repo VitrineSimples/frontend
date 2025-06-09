@@ -31,8 +31,9 @@ export default function Register() {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4 my-12">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-8">
+      <div className="w-full max-w-xl bg-white rounded-2xl shadow-md p-8">
         <div className="flex flex-col items-center mb-6">
+        <Link href="/" className="flex items-center mb-4">
           <Image
             src="/logo.svg"
             alt="Guren Logo"
@@ -40,6 +41,7 @@ export default function Register() {
             height={60}
             width={60}
           />
+          </Link>
           <h2 className="text-2xl font-semibold text-gray-800">
             Crie sua conta
           </h2>

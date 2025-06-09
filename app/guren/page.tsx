@@ -41,7 +41,7 @@ export default function ShopsGuren() {
                 alt={shop.products[0].name}
                 width={400}
                 height={200}
-                className="rounded-lg object-cover w-full h-48"
+                className="rounded-lg object-contain w-full h-48"
               />
             ) : (
               <div className="w-full h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
