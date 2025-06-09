@@ -89,7 +89,6 @@ export const SeasonalCampaignProvider = ({
       );
       setCampaigns(res.data);
     } catch (error) {
-      toast.error("Erro ao buscar campanhas da loja.");
       console.error(error);
     } finally {
       setIsLoading(false);

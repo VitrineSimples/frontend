@@ -1,10 +1,5 @@
 "use client";
 
-// import { NavBar } from "@/app/components/NavBar/NavBar";
-// import Carousel from "../components/Carousel/Carousel";
-// import Benefits from "../components/Benefits";
-// import Sazonal from "../../components/Sazonal";
-// import { iSazonal } from "@/context/SeasonalCampaign/type";
 import Header from "../components/Header/Header";
 import SubHeader from "../components/Header/SubHeader";
 import Produtos from "../components/Produtos";
@@ -38,11 +33,9 @@ export default function MarketPage({ params }: PageProps) {
     <>
       <SubHeader shop={selectedShop} />
       <Header shop={selectedShop} />
-      {/* <NavBar /> */}
-      {/* <Carousel /> */}
-      {/* <Benefits /> */}
       {user?.id && selectedShop.ownerId === user.id && <AdminProduct />}
       <Sazonal
+        shopWhatsApp={selectedShop.whatsApp}
         shopId={selectedShop.id}
         shopName={selectedShop.name}
         isOwner={Boolean(user?.id && selectedShop.ownerId === user.id)}

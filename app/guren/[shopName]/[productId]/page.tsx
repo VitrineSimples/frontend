@@ -67,9 +67,7 @@ export default function ProductDetails({ params }: PageProps) {
           R$ {selectedProduct.price.toFixed(2).replace(".", ",")}
         </p>
 
-        {selectedProduct.name && (
-          <p className="text-gray-700 text-base">{selectedProduct.name}</p>
-        )}
+        <p className="text-gray-700 text-base">{selectedProduct.description}</p>
 
         <div className="text-sm text-gray-500">
           Loja vinculada:{" "}

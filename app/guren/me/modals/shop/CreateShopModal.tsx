@@ -30,7 +30,7 @@ export default function CreateShopModal({
     formState: { errors },
   } = useForm<CreateShopFormData>({
     resolver: zodResolver(createShopSchema),
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   const { isLoading } = useLoading();

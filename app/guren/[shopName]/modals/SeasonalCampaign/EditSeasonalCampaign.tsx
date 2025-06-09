@@ -7,10 +7,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoading } from "@/context/Loading/LoadingContext";
 import { useShop } from "@/context/Shop/ShopContext";
-import { useState, useEffect } from "react";
 import { useSeasonalCampaign } from "@/context/SeasonalCampaign/SeasonalCampaingContext";
+import { useEffect, useState } from "react";
+import { SeasonalCampaign } from "@/context/SeasonalCampaign/type";
 
-const createCampaignSchema = z.object({
+const editCampaignSchema = z.object({
   campaignName: z.string().min(3, "Nome da campanha muito curto"),
   description: z.string().min(5, "Descrição muito curta"),
   startDate: z.string().refine((date) => !isNaN(Date.parse(date)), {
@@ -22,38 +23,52 @@ const createCampaignSchema = z.object({
   productIds: z.array(z.string()).min(1, "Selecione pelo menos um produto"),
 });
 
-type CreateCampaignFormData = z.infer<typeof createCampaignSchema>;
+type EditCampaignFormData = z.infer<typeof editCampaignSchema>;
 
-export default function CreateSeasonalCampaignModal({
+export default function EditSeasonalCampaignModal({
   toggleModal,
+  campaign,
 }: {
   toggleModal: () => void;
+  campaign: SeasonalCampaign;
 }) {
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<CreateCampaignFormData>({
-    resolver: zodResolver(createCampaignSchema),
+  } = useForm<EditCampaignFormData>({
+    resolver: zodResolver(editCampaignSchema),
     mode: "onSubmit",
+    defaultValues: {
+      campaignName: campaign.campaignName,
+      description: campaign.description,
+      startDate: campaign.startDate.slice(0, 10),
+      endDate: campaign.endDate.slice(0, 10),
+      productIds: campaign.products.map((p) => p.id),
+    },
   });
 
-  const { createCampaign } = useSeasonalCampaign();
   const { selectedShop } = useShop();
+  const { updateCampaign } = useSeasonalCampaign();
   const { isLoading } = useLoading();
-  const [selectedProductIds, setSelectedProductIds] = useState<string[]>([]);
+  const [selectedProductIds, setSelectedProductIds] = useState<string[]>(
+    campaign.products.map((p) => p.id)
+  );
 
   useEffect(() => {
     setValue("productIds", selectedProductIds);
   }, [selectedProductIds, setValue]);
 
-  const onSubmit = async (data: CreateCampaignFormData) => {
-    await createCampaign({
-      ...data,
-      shopId: selectedShop!.id,
+  const onSubmit = async (data: EditCampaignFormData) => {
+    await updateCampaign(campaign.id, {
+      id: campaign.id,
+      campaignName: data.campaignName,
+      description: data.description,
       startDate: new Date(data.startDate).toISOString(),
       endDate: new Date(data.endDate).toISOString(),
+      shopId: selectedShop!.id,
+      productIds: selectedProductIds,
     });
     toggleModal();
   };
@@ -101,7 +116,7 @@ export default function CreateSeasonalCampaignModal({
 
         <Input
           type="text"
-          placeholder="Ex: Aproveite nossas ofertas de verão!"
+          placeholder="Ex: Aproveite nossas ofertas!"
           label="Descrição"
           id="description"
           {...register("description")}
@@ -167,7 +182,7 @@ export default function CreateSeasonalCampaignModal({
             type="submit"
             className="mt-4 w-full border hover:border-white border-brand-200 hover:bg-brand-200 hover:text-white py-2 rounded-lg bg-white text-brand-200 transition-colors cursor-pointer duration-300"
           >
-            Criar Campanha
+            Salvar Alterações
           </button>
         )}
       </form>

@@ -42,11 +42,11 @@ export default function Home() {
           <ThemeToggle />
         </div>
       </div>
-      <header className="shadow-blue min-h-[60px] md:min-h-[80px] flex items-center sticky top-0 bg-gray-200 z-[999]">
-        <div className="container mx-auto h-full flex flex-row items-center justify-between px-4 md:px-0 relative">
+      <header className="shadow-blue min-h-[60px] md:min-h-[80px] flex items-center sticky px-4 top-0 bg-gray-200 z-[999]">
+        <div className="container mx-auto h-full flex flex-row items-center justify-between md:px-0 relative">
           <a
             href="#"
-            className="flex justify-center items-center gap-1 md:gap-4 text-brand-200 uppercase text-xl md:text-2xl my-4 md:my-0 font-semibold font-logo-2 tracking-widest"
+            className="flex justify-center items-center gap-4 md:gap-4 text-brand-200 uppercase text-xl md:text-2xl my-4 md:my-0 font-semibold font-logo-2 tracking-widest"
           >
             <Image src={logo} alt="logo do projeto" className="w-9 h-9" />
             guren
@@ -84,12 +84,12 @@ export default function Home() {
           <Image
             src={leftDraw}
             alt="desenho de uma loja"
-            className="w-full max-w-[460px] 2xl:max-w-[720px]"
+            className="w-full max-w-[420px] 2xl:max-w-[680px]"
           />
           <Image
             src={rightDraw}
             alt="desenho de uma loja"
-            className="justify-self-end w-full max-w-[460px] 2xl:max-w-[720px]"
+            className="justify-self-end w-full max-w-[420px] 2xl:max-w-[680px]"
           />
         </div>
       </div>
