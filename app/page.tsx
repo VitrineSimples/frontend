@@ -1,25 +1,29 @@
+import Image from "next/image";
 import Link from "next/link";
 import FlipWords from "./components/FlipWords/FlipWords";
 import leftDraw from "@/public/left_draw_gif.svg";
 import rightDraw from "@/public/right_draw_gif.svg";
-import Image from "next/image";
 import { IconMail, IconBrandWhatsapp } from "@tabler/icons-react";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 import NavList from "./components/HeaderNav/NavList";
 import logo from "@/public/logo.svg";
+import Projeto from "./components/LPSections/Projeto";
+import Empresa from "./components/LPSections/Empresa";
+import Disciplinas from "./components/LPSections/Disciplinas";
+import Integrantes from "./components/LPSections/Integrantes";
 
 const navValues = [
-  { label: "Home", href: "#" },
-  { label: "Disciplina", href: "#disciplina" },
-  { label: "Empresa", href: "#empresa" },
+  { label: "Home", href: "#home" },
   { label: "Projeto", href: "#projeto" },
+  { label: "Empresa", href: "#empresa" },
+  { label: "Disciplina", href: "#disciplina" },
   { label: "Membros", href: "#membros" },
 ];
 
 export default function Home() {
   return (
     <>
-      <div className="bg-brand-200 w-full h-10">
+      <div id="subHeader" className="bg-brand-200 w-full h-10">
         <div className="container mx-auto flex items-center justify-between h-full px-4 md:px-12">
           <div id="subHeader-contact" className="flex gap-4 text-gray-50">
             <a href="mailto:guren@shop.com" className="flex gap-2">
@@ -68,7 +72,7 @@ export default function Home() {
             words={["confiável", "inteligente", "eficiente", "inovador"]}
           />
           <Link
-            href="#"
+            href="/register"
             className="bg-brand-200 text-white px-6 py-3 rounded-md cursor-pointer w-fit hover:bg-brand-100 transition duration-300"
             data-aos="fade-down"
             data-aos-delay="1550"
@@ -89,7 +93,18 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="min-h-screen"></div>
+      <Projeto />
+      <Empresa />
+      <Disciplinas />
+      <Integrantes />
+      <footer className="bg-gray-200 py-6">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-600">
+            &copy; {new Date().getFullYear()} Guren
+          </p>
+          <p className="text-gray-600">Desenvolvido por Guris.</p>
+        </div>
+      </footer>
     </>
   );
 }
