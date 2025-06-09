@@ -100,7 +100,9 @@ export default function CartPage() {
           Total: R$ {total.toFixed(2).replace(".", ",")}
         </p>
         <button
-          onClick={async () => await createOrderFromCart()}
+          onClick={async () =>
+            await createOrderFromCart(cart.items[0].shopWhatsApp)
+          }
           className="bg-contrast/90 text-white px-6 py-3 rounded hover:bg-contrast transition cursor-pointer"
         >
           Finalizar Compra

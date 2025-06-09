@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { User, UserContextType } from "./types";
+import { iUser, UserContextType } from "./types";
 import api from "@/lib/api";
 import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
@@ -12,8 +12,8 @@ import { AxiosError } from "axios";
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<iUser[]>([]);
+  const [selectedUser, setSelectedUser] = useState<iUser | null>(null);
   const router = useRouter();
 
   const { setIsLoading } = useLoading();
@@ -43,11 +43,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const createUser = async (data: Omit<User, "id">) => {
+  const createUser = async (data: Omit<iUser, "id" | "shop">) => {
     try {
       setIsLoading(true);
-      const res = await api.post("api/Users", data);
-      console.log(res);
+      await api.post("api/Users", data);
       await getUsers();
       toast.success("Conta criada com sucesso!");
       toast.success("Redirecionando pro login");
@@ -65,7 +64,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const updateUser = async (id: string, data: Omit<User, "id">) => {
+  const updateUser = async (id: string, data: Omit<iUser, "id"| "shop">) => {
     try {
       setIsLoading(true);
       if (id != user!.id) throw new Error("Sem permissão!");

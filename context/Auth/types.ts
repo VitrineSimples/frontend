@@ -1,4 +1,4 @@
-import { Shop } from "../Shop/types";
+import { iUser } from "../User/types";
 
 interface iLoginFormData {
   email: string;
@@ -11,15 +11,7 @@ interface iAuthContext {
   login: (loginData: iLoginFormData) => Promise<void>;
   getUser: (token: string) => Promise<void>;
   logout: () => void;
-  refreshUser: () => Promise<void>
+  refreshUser: () => Promise<void>;
 }
 
-interface iUser {
-  id: string;
-  name: string;
-  email: string;
-  cpf: string;
-  shop: Shop
-}
-
-export type { iAuthContext, iUser, iLoginFormData };
+export type { iAuthContext, iLoginFormData };

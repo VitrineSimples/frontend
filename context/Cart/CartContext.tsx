@@ -29,8 +29,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addToCart = async (item: AddCartItem, currentShopId: string) => {
     if (!user) return;
-    console.log(currentShopId);
-
     if (cart && cart.items.length > 0) {
       const itemShopId = cart.items[0].shopId;
       if (itemShopId !== currentShopId) {

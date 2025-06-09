@@ -10,6 +10,11 @@ import { useShop } from "@/context/Shop/ShopContext";
 
 const createShopSchema = z.object({
   name: z.string().min(2, "Nome da loja deve ter no mínimo 2 caracteres"),
+  email: z.string().email("Informe um e-mail válido"),
+  whatsApp: z
+    .string()
+    .min(8, "Informe um número de WhatsApp válido")
+    .max(15, "Número de WhatsApp muito longo"),
 });
 
 type CreateShopFormData = z.infer<typeof createShopSchema>;
@@ -32,7 +37,7 @@ export default function CreateShopModal({
   const { createShop } = useShop();
 
   const onSubmit = async (data: CreateShopFormData) => {
-    await createShop(data.name);
+    await createShop(data);
     toggleModal();
   };
 
@@ -53,6 +58,36 @@ export default function CreateShopModal({
           {errors.name && (
             <p className="text-contrast text-sm mt-1 px-2">
               {errors.name.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <Input
+            label="E-mail"
+            id="email"
+            type="email"
+            placeholder="exemplo@dominio.com"
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-contrast text-sm mt-1 px-2">
+              {errors.email.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <Input
+            label="WhatsApp"
+            id="whatsApp"
+            type="text"
+            placeholder="(99) 99999-9999"
+            {...register("whatsApp")}
+          />
+          {errors.whatsApp && (
+            <p className="text-contrast text-sm mt-1 px-2">
+              {errors.whatsApp.message}
             </p>
           )}
         </div>

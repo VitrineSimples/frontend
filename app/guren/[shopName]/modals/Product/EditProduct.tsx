@@ -10,6 +10,7 @@ import { useProduct } from "@/context/Product/ProductContext";
 
 const editProductSchema = z.object({
   name: z.string().min(2, "Nome do produto deve ter no mínimo 2 caracteres"),
+  description: z.string().min(5, "Descrição deve ter no mínimo 5 caracteres"),
   price: z.coerce
     .number()
     .positive("O preço deve ser um número positivo")
@@ -24,6 +25,7 @@ interface EditProductModalProps {
   product: {
     id: string;
     name: string;
+    description: string;
     price: number;
     imageURL: string;
     shopId: string;
@@ -43,6 +45,7 @@ export default function EditProductModal({
     mode: "onChange",
     defaultValues: {
       name: product.name,
+      description: product.description,
       price: product.price,
       imageURL: product.imageURL,
     },
@@ -73,6 +76,21 @@ export default function EditProductModal({
           {errors.name && (
             <p className="text-contrast text-sm mt-1 px-2">
               {errors.name.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <Input
+            label="Descrição"
+            id="description"
+            type="text"
+            placeholder="Ex: Temaki de salmão com cream cheese"
+            {...register("description")}
+          />
+          {errors.description && (
+            <p className="text-contrast text-sm mt-1 px-2">
+              {errors.description.message}
             </p>
           )}
         </div>

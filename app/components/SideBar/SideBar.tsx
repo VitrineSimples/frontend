@@ -4,11 +4,7 @@ import React, { useState } from "react";
 import {
   IconArrowLeft,
   IconGrain,
-  IconSettings,
-  IconCurrencyDollar,
   IconUser,
-  IconHeadset,
-  IconHistory,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -29,28 +25,6 @@ export function SideBarComponent() {
       label: "Minha Conta",
       href: "/guren/me",
       icon: <IconUser className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
-    },
-    {
-      label: "Cupons e Descontos",
-      href: "#",
-      icon: (
-        <IconCurrencyDollar className="text-neutral-700 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Suporte e Ajuda",
-      href: "#",
-      icon: <IconHeadset className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
-    },
-    {
-      label: "Histórico de Compras",
-      href: "#",
-      icon: <IconHistory className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
-    },
-    {
-      label: "Cofigurações",
-      href: "#",
-      icon: <IconSettings className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
     },
     {
       isLogoutButton: true,
@@ -106,7 +80,7 @@ export function SideBarComponent() {
 export const Logo = () => {
   return (
     <Link
-      href="/"
+      href="/guren"
       className="font-normal flex space-x-2 items-center text-sm py-1 relative z-20"
     >
       <Image className="h-8 w-8 flex-shrink-0" src={logo} alt="Logo" />

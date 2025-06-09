@@ -25,7 +25,6 @@ export default function Register() {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
-    console.log("Registro:", data);
     const newUser = registerSchemaWithoutPassword.parse(data);
     await createUser(newUser);
   };
@@ -121,6 +120,20 @@ export default function Register() {
             {errors.confirmPassword && (
               <p className="text-contrast text-sm mt-1 px-2">
                 {errors.confirmPassword.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <Input
+              label="URL da Imagem"
+              id="imageUrl"
+              type="text"
+              placeholder="https://exemplo.com/minha-foto.jpg"
+              {...register("imageURL")}
+            />
+            {errors.imageURL && (
+              <p className="text-contrast text-sm mt-1 px-2">
+                {errors.imageURL.message}
               </p>
             )}
           </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import userImage from "@/public/userStockImage.jpg";
 import { IconUserEdit, IconUserX } from "@tabler/icons-react";
 import { useState } from "react";
 import { Modal } from "@/app/components/Modal/Modal";
@@ -49,8 +48,10 @@ export default function User() {
         <div className="container mx-auto px-2 flex md:flex-row flex-col md:justify-between md:-translate-y-0 -translate-y-16">
           <div className="flex items-center md:items-start md:flex-row flex-col">
             <Image
-              src={userImage}
+              src={user?.imageURL}
               alt="user"
+              width={250}
+              height={250}
               className="border-2 border-brand-100 rounded-full w-32 h-32 md:w-40 md:h-40 xl:w-48 xl:h-48 object-cover md:-translate-y-16"
             />
             <div className="flex flex-col gap-1 m-4">

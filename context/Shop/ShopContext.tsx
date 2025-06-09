@@ -8,7 +8,7 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { Shop, ShopContextType } from "./types";
+import { iCreateShopData, Shop, ShopContextType } from "./types";
 import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
 import { toast } from "react-toastify";
@@ -52,13 +52,13 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const createShop = async (data: string) => {
+  const createShop = async (data: iCreateShopData) => {
     try {
       setIsLoading(true);
       await api.post("api/Shops", {
         userId: user!.id,
         products: [],
-        name: data,
+        ...data,
       });
       await getShops();
       await refreshUser();
@@ -71,10 +71,10 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const updateShop = async (id: string, data: string) => {
+  const updateShop = async (id: string, data: iCreateShopData) => {
     try {
       setIsLoading(true);
-      await api.put(`api/Shops/${id}`, { userId: user!.id, name: data });
+      await api.put(`api/Shops/${id}`, { userId: user!.id, ...data });
       toast.success("Loja editada com sucesso!");
       await getShops();
       await refreshUser();

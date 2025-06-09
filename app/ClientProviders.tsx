@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ProductProvider } from "@/context/Product/ProductContext";
 import { CartProvider } from "@/context/Cart/CartContext";
 import { OrderProvider } from "@/context/Order/OrderContext";
+import { SeasonalCampaignProvider } from "@/context/SeasonalCampaign/SeasonalCampaingContext";
 
 export function ClientProviders({ children }: { children: ReactNode }) {
   return (
@@ -21,7 +22,11 @@ export function ClientProviders({ children }: { children: ReactNode }) {
             <ShopProvider>
               <ProductProvider>
                 <CartProvider>
-                  <OrderProvider>{children}</OrderProvider>
+                  <OrderProvider>
+                    <SeasonalCampaignProvider>
+                      {children}
+                    </SeasonalCampaignProvider>
+                  </OrderProvider>
                 </CartProvider>
               </ProductProvider>
             </ShopProvider>

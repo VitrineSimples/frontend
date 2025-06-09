@@ -6,6 +6,7 @@ const baseSchema = z.object({
   email: z.string().email("Email inválido"),
   password: z.string().min(6, "A senha precisa ter no mínimo 6 caracteres"),
   confirmPassword: z.string(),
+  imageURL: z.string().url("Insira uma URL válida"),
 });
 
 export const registerSchema = baseSchema.refine(
@@ -15,8 +16,6 @@ export const registerSchema = baseSchema.refine(
     path: ["confirmPassword"],
   }
 );
-
-
 
 export const registerSchemaWithoutPassword = baseSchema.omit({
   confirmPassword: true,

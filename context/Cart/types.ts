@@ -5,6 +5,7 @@ interface CartItem {
   productPrice: number;
   productImage: string;
   shopId: string;
+  shopWhatsApp: string;
   quantity: number;
 }
 

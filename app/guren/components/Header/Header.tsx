@@ -1,11 +1,12 @@
 "use client";
 import { useCart } from "@/context/Cart/CartContext";
+import { Shop } from "@/context/Shop/types";
 import { IconBuildingStore } from "@tabler/icons-react";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 
-const Header = ({ shopName }: { shopName: string }) => {
+const Header = ({ shop }: { shop: Shop }) => {
   const { cart, getCart } = useCart();
 
   useEffect(() => {
@@ -21,11 +22,11 @@ const Header = ({ shopName }: { shopName: string }) => {
       className="w-full h-32 bg-gray-100 border-b border-b-gray-600/20"
     >
       <div className="container flex-wrap mx-auto px-4 md:px-12 flex justify-between items-center h-full">
-        <Link href={`/guren/${shopName}`} className="order-1 md:order-0">
+        <Link href={`/guren/${shop.name}`} className="order-1 md:order-0">
           <h1 className="flex items-center text-contrast">
             <IconBuildingStore className="w-9 h-9 md:w-10 md:h-10 mr-2" />{" "}
             <span className="font-logo-1 font-bold text-2xl md:text-3xl">
-              {shopName}
+              {shop.name}
             </span>
           </h1>
         </Link>

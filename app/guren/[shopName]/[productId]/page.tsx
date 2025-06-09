@@ -24,7 +24,7 @@ export default function ProductDetails({ params }: PageProps) {
       { productId: selectedProduct!.id, quantity: 1 },
       selectedProduct!.shopId
     );
-    await createOrderFromCart();
+    await createOrderFromCart(selectedProduct!.shopWhatsApp);
   };
 
   useEffect(() => {
@@ -73,9 +73,7 @@ export default function ProductDetails({ params }: PageProps) {
 
         <div className="text-sm text-gray-500">
           Loja vinculada:{" "}
-          <span className="font-medium text-contrast">
-            {selectedProduct.shopId}
-          </span>
+          <span className="font-medium text-contrast">{shopName}</span>
         </div>
         {(user.shop && selectedProduct.shopId !== user.shop.id) ||
           (user.shop === null && (

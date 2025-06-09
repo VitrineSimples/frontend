@@ -7,10 +7,12 @@ export default function Produtos({
   products,
   isOwner,
   shopName,
+  shopWhatsApp
 }: {
   products: iProduct[];
   isOwner: boolean;
   shopName: string;
+  shopWhatsApp: string;
 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 p-6 duration-300">
@@ -20,7 +22,13 @@ export default function Produtos({
         </div>
       )}
       {products.map((product) => (
-        <ProductCard product={product} key={product.id} isOwner={isOwner} shopName={shopName}/>
+        <ProductCard
+          product={product}
+          key={product.id}
+          isOwner={isOwner}
+          shopName={shopName}
+          shopWhatsApp={shopWhatsApp}
+        />
       ))}
     </div>
   );

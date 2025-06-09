@@ -7,11 +7,13 @@ import { useAuth } from "../Auth/AuthContext";
 import { useLoading } from "../Loading/LoadingContext";
 import { OrderContextType, Order } from "./types";
 import { useCart } from "../Cart/CartContext";
+import { createWhatsAppMessage } from "@/lib/utils";
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
   const { user, token } = useAuth();
   const { setIsLoading } = useLoading();
   const { getCart, clearCart } = useCart();
@@ -20,7 +22,11 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
     if (!user) return;
     try {
       setIsLoading(true);
-      const response = await api.get<Order[]>("api/Orders/user");
+      const response = await api.get<Order[]>("api/Orders/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setOrders(response.data);
     } catch (error) {
       console.error("Erro ao buscar pedidos:", error);
@@ -43,10 +49,10 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const createOrderFromCart = async () => {
+  const createOrderFromCart = async (shopWhatsAppNumber: string) => {
     try {
       setIsLoading(true);
-      await api.post("api/Orders/fromcart", null, {
+      const { data } = await api.post<Order>("api/Orders/fromcart", null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,9 +61,27 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
       await fetchOrders();
       clearCart();
       await getCart();
+      window.location.href = `https://wa.me/${shopWhatsAppNumber}?text=${createWhatsAppMessage(
+        data.user.name,
+        data.id
+      )}`;
+      console.log(createWhatsAppMessage(data.user.name, data.id));
     } catch (error) {
       console.error("Erro ao criar pedido do carrinho:", error);
       toast.error("Erro ao criar pedido do carrinho.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getOrderById = async (id: string): Promise<void> => {
+    try {
+      setIsLoading(true);
+      const response = await api.get<Order>(`api/Orders/${id}`);
+      setCurrentOrder(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar pedido:", error);
+      toast.error("Erro ao buscar detalhes do pedido.");
     } finally {
       setIsLoading(false);
     }
@@ -69,7 +93,14 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <OrderContext.Provider
-      value={{ orders, fetchOrders, createOrder, createOrderFromCart }}
+      value={{
+        orders,
+        fetchOrders,
+        createOrder,
+        createOrderFromCart,
+        getOrderById,
+        currentOrder,
+      }}
     >
       {children}
     </OrderContext.Provider>

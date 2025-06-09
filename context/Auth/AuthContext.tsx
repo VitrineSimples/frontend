@@ -1,11 +1,12 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { iAuthContext, iLoginFormData, iUser } from "./types";
+import { iAuthContext, iLoginFormData } from "./types";
 import api from "@/lib/api";
 import { useLoading } from "../Loading/LoadingContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { iUser } from "../User/types";
 
 const AuthContext = createContext<iAuthContext | undefined>(undefined);
 
@@ -72,7 +73,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);
-      console.log(response.data);
     } catch (err) {
       console.error("Erro ao obter usuário", err);
       logout();

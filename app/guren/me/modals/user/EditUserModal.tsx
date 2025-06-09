@@ -27,6 +27,9 @@ export default function EditUserModal({
   const { updateUser } = useUser();
 
   setValue("name", user!.name);
+  setValue("cpf", user!.cpf);
+  setValue("email", user!.email);
+  setValue("imageURL", user!.imageURL ?? "");
 
   const onSubmit = async (data: RegisterFormData) => {
     await updateUser(user!.id, data);
@@ -42,7 +45,6 @@ export default function EditUserModal({
       >
         <div>
           <Input
-            value={user?.name}
             label="Nome"
             id="name"
             type="text"
@@ -55,14 +57,14 @@ export default function EditUserModal({
             </p>
           )}
         </div>
+
         <div>
           <Input
-            value={user?.cpf}
             maxLength={11}
             label="CPF"
             id="cpf"
             type="number"
-            placeholder="Digite seu nome"
+            placeholder="Digite seu CPF"
             {...register("cpf")}
           />
           {errors.cpf && (
@@ -74,7 +76,6 @@ export default function EditUserModal({
 
         <div>
           <Input
-            value={user?.email}
             label="Email"
             id="email"
             type="email"
@@ -117,6 +118,23 @@ export default function EditUserModal({
             </p>
           )}
         </div>
+
+        {/* Campo de URL da imagem */}
+        <div>
+          <Input
+            label="URL da Imagem"
+            id="imageURL"
+            type="text"
+            placeholder="https://exemplo.com/sua-foto.jpg"
+            {...register("imageURL")}
+          />
+          {errors.imageURL && (
+            <p className="text-contrast text-sm mt-1 px-2">
+              {errors.imageURL.message}
+            </p>
+          )}
+        </div>
+
         {isLoading ? (
           <LoadingSpinner />
         ) : (

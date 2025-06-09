@@ -3,8 +3,8 @@ import { iProduct } from "@/context/Product/type";
 import { Edit, ShoppingCart, Trash } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import EditProductModal from "../[shopName]/modals/EditProduct";
-import DeleteProductModal from "../[shopName]/modals/DeleteProduct";
+import EditProductModal from "../[shopName]/modals/Product/EditProduct";
+import DeleteProductModal from "../[shopName]/modals/Product/DeleteProduct";
 import Link from "next/link";
 import { useCart } from "@/context/Cart/CartContext";
 import { useOrder } from "@/context/Order/OrderContext";
@@ -13,10 +13,12 @@ export default function ProductCard({
   product,
   isOwner,
   shopName,
+  shopWhatsApp,
 }: {
   product: iProduct;
   isOwner: boolean;
   shopName: string;
+  shopWhatsApp: string;
 }) {
   const [editProductModal, setEditProductModal] = useState(false);
   const toggleEditProductModal = () => setEditProductModal(!editProductModal);
@@ -25,11 +27,12 @@ export default function ProductCard({
   const toggleDeleteProductModal = () =>
     setDeleteProductModal(!deleteProductModal);
 
+
   const { addToCart } = useCart();
   const { createOrderFromCart } = useOrder();
   const addToCartAndFinishOrder = async () => {
     await addToCart({ productId: product.id, quantity: 1 }, product.shopId);
-    await createOrderFromCart();
+    await createOrderFromCart(shopWhatsApp);
   };
 
   return (
@@ -69,7 +72,7 @@ export default function ProductCard({
           <h2 className="text-lg sm:text-xl font-semibold text-gray-600">
             {product.name}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">{product.name}</p>
+          <p className="text-sm text-gray-500 mt-1">{product.description}</p>
         </div>
         <div className="flex items-center justify-between w-full px-1">
           <span className="text-contrast font-bold text-lg sm:text-xl">

@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoading } from "@/context/Loading/LoadingContext";
-import { useProduct } from "@/context/Product/ProductContext"; // você deve ter esse contexto
+import { useProduct } from "@/context/Product/ProductContext";
 import { useShop } from "@/context/Shop/ShopContext";
 
+// ✅ Adicionando "description" no schema
 const createProductSchema = z.object({
   name: z.string().min(2, "Nome do produto deve ter no mínimo 2 caracteres"),
+  description: z.string().min(5, "Descrição deve ter no mínimo 5 caracteres"),
   price: z.coerce
     .number()
     .positive("O preço deve ser um número positivo")
@@ -60,6 +62,21 @@ export default function CreateProductModal({
           {errors.name && (
             <p className="text-contrast text-sm mt-1 px-2">
               {errors.name.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <Input
+            label="Descrição"
+            id="description"
+            type="text"
+            placeholder="Ex: Temaki de salmão com cream cheese"
+            {...register("description")}
+          />
+          {errors.description && (
+            <p className="text-contrast text-sm mt-1 px-2">
+              {errors.description.message}
             </p>
           )}
         </div>
