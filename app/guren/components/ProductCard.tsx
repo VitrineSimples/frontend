@@ -27,7 +27,6 @@ export default function ProductCard({
   const toggleDeleteProductModal = () =>
     setDeleteProductModal(!deleteProductModal);
 
-
   const { addToCart } = useCart();
   const { createOrderFromCart } = useOrder();
   const addToCartAndFinishOrder = async () => {
@@ -72,42 +71,46 @@ export default function ProductCard({
           <h2 className="text-lg sm:text-xl font-semibold text-gray-600">
             {product.name}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">{product.description}</p>
+          <p className="text-sm text-gray-500 mt-1 line-clamp-3">
+            {product.description}
+          </p>
         </div>
-        <div className="flex items-center justify-between w-full px-1">
-          <span className="text-contrast font-bold text-lg sm:text-xl">
-            R$ {product.price.toFixed(2)}
-          </span>
-          {!isOwner && (
-            <button
-              title="Adicionar ao carrinho"
-              onClick={() =>
-                addToCart(
-                  { productId: product.id, quantity: 1 },
-                  product.shopId
-                )
-              }
-              className="bg-gray-100 cursor-pointer hover:bg-gray-200 p-2 rounded-full transition"
+        <div className="flex flex-col flex-1 items-end justify-end w-full">
+          <div className="flex items-center justify-between w-full px-1">
+            <span className="text-contrast font-bold text-lg sm:text-xl">
+              R$ {product.price.toFixed(2)}
+            </span>
+            {!isOwner && (
+              <button
+                title="Adicionar ao carrinho"
+                onClick={() =>
+                  addToCart(
+                    { productId: product.id, quantity: 1 },
+                    product.shopId
+                  )
+                }
+                className="bg-gray-100 cursor-pointer hover:bg-gray-200 p-2 rounded-full transition"
+              >
+                <ShoppingCart className="w-5 h-5 text-gray-600 " />
+              </button>
+            )}
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 w-full mt-2">
+            <Link
+              href={`${shopName}/${product.id}`}
+              className="flex-1 text-center cursor-pointer bg-gray-200 text-brand-200 py-2 rounded-xl hover:bg-gray-300 hover:text-brand-100 transition font-medium text-sm sm:text-base"
             >
-              <ShoppingCart className="w-5 h-5 text-gray-600 " />
-            </button>
-          )}
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2 w-full mt-2">
-          <Link
-            href={`${shopName}/${product.id}`}
-            className="flex-1 text-center cursor-pointer bg-gray-200 text-brand-200 py-2 rounded-xl hover:bg-gray-300 hover:text-brand-100 transition font-medium text-sm sm:text-base"
-          >
-            Detalhes
-          </Link>
-          {!isOwner && (
-            <button
-              onClick={() => addToCartAndFinishOrder()}
-              className="flex-1 cursor-pointer bg-contrast/95 text-gray-100 py-2 rounded-xl hover:bg-contrast transition font-medium text-sm sm:text-base"
-            >
-              Comprar
-            </button>
-          )}
+              Detalhes
+            </Link>
+            {!isOwner && (
+              <button
+                onClick={() => addToCartAndFinishOrder()}
+                className="flex-1 cursor-pointer bg-contrast/95 text-gray-100 py-2 rounded-xl hover:bg-contrast transition font-medium text-sm sm:text-base"
+              >
+                Comprar
+              </button>
+            )}
+          </div>
         </div>
       </div>
       {editProductModal && (

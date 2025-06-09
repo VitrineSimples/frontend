@@ -147,7 +147,7 @@ export default function User() {
         <Modal toggleModal={toggleEditShopModal}>
           <EditShopModal
             toggleModal={toggleEditShopModal}
-            currentName={user.shop.name}
+            currentShop={user.shop}
             currentId={user.shop.id}
           />
         </Modal>

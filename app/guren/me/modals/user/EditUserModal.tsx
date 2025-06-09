@@ -19,7 +19,7 @@ export default function EditUserModal({
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   const { isLoading } = useLoading();

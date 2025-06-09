@@ -13,10 +13,10 @@ type ProductContextType = {
   selectedProduct: iProduct | null;
   getProducts: () => Promise<void>;
   getProductById: (id: string) => Promise<void>;
-  createProduct: (data: Omit<iProduct, "id">) => Promise<void>;
+  createProduct: (data: Omit<iProduct, "id" | "shopWhatsApp">) => Promise<void>;
   updateProduct: (
     id: string,
-    data: Omit<iProduct, "id" | "shopId">
+    data: Omit<iProduct, "id" | "shopId" | "shopWhatsApp">
   ) => Promise<void>;
   deleteProduct: (id: string) => Promise<void>;
   clearSelectedProduct: () => void;

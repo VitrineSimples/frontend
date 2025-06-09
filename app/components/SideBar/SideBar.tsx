@@ -1,11 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  IconArrowLeft,
-  IconGrain,
-  IconUser,
-} from "@tabler/icons-react";
+import { IconArrowLeft, IconGrain, IconUser } from "@tabler/icons-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -63,8 +59,8 @@ export function SideBarComponent() {
               href: "/guren/me",
               icon: (
                 <Image
-                  src={imagem}
-                  className="h-7 w-7 flex-shrink-0 rounded-full"
+                  src={user?.imageURL || imagem}
+                  className="h-7 w-7 flex-shrink-0 rounded-full object-cover"
                   width={50}
                   height={50}
                   alt="Avatar"

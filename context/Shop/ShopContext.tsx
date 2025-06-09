@@ -74,6 +74,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const updateShop = async (id: string, data: iCreateShopData) => {
     try {
       setIsLoading(true);
+      console.log(data)
       await api.put(`api/Shops/${id}`, { userId: user!.id, ...data });
       toast.success("Loja editada com sucesso!");
       await getShops();
