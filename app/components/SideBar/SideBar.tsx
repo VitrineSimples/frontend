@@ -9,6 +9,7 @@ import imagem from "@/public/userStockImage.jpg";
 import logo from "@/public/logo.svg";
 import { SideBarBody, SideBarLink, SideBar } from "./ConfigSideBar";
 import { useAuth } from "@/context/Auth/AuthContext";
+import { SearchCheckIcon } from "lucide-react";
 
 export function SideBarComponent() {
   const links = [
@@ -21,6 +22,13 @@ export function SideBarComponent() {
       label: "Minha Conta",
       href: "/guren/me",
       icon: <IconUser className="text-neutral-700 h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Buscar Pedido",
+      href: "/guren/order",
+      icon: (
+        <SearchCheckIcon className="text-neutral-700 h-5 w-5 flex-shrink-0" />
+      ),
     },
     {
       isLogoutButton: true,

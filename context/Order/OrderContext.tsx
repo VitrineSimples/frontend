@@ -80,6 +80,7 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await api.get<Order>(`api/Orders/${id}`);
       setCurrentOrder(response.data);
     } catch (error) {
+      setCurrentOrder(null);
       console.error("Erro ao buscar pedido:", error);
       toast.error("Erro ao buscar detalhes do pedido.");
     } finally {
@@ -100,6 +101,7 @@ export const OrderProvider = ({ children }: { children: React.ReactNode }) => {
         createOrderFromCart,
         getOrderById,
         currentOrder,
+        setCurrentOrder
       }}
     >
       {children}

@@ -30,7 +30,7 @@ export default function Register() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4 my-12">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-8">
         <div className="flex flex-col items-center mb-6">
           <Image
